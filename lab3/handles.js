@@ -33,5 +33,10 @@ module.exports = {
     res.write('\n')
     res.write(user.date)
     res.end();
+
+    
+
   }
+  
 }
+
