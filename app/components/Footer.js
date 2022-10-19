@@ -20,7 +20,7 @@ const Footer = () => {
   return (
     <FooterSection>
         <div>
-                <StyledLink>Nous contactez via nos différentes platformes : </StyledLink>
+                <StyledLink>Nous contactez via nos différentes plateformes : </StyledLink>
         </div>
         <div>
         <a href="https://www.linkedin.com/in/l%C3%A9o-parent-742b44222/">

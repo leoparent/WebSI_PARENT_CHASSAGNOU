@@ -26,10 +26,10 @@ export default function About() {
       </Head>
       <Hero>
       <Heading>
-          Bienvenue sur notre site vous lallez ici voir toutes ses caractéristiques.<br>
+          Bienvenue sur notre site vous allez ici voir toutes ses caractéristiques.<br>
           </br>
           Ici vous serez capable de vous renseignez sur toutes nos offres en rapport avec l'univers de la science <br></br>
-          Si vous êtes réveur et que vous voulez décrocher la lune alors vous êtes au bon endroits<br></br><br></br>
+          Si vous êtes rêveur et que vous voulez décrocher la lune alors vous êtes au bon endroit<br></br><br></br>
           Que les étoiles vous fassent briller !!
       </Heading>
     </Hero>

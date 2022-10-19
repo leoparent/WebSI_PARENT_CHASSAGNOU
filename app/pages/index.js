@@ -26,11 +26,11 @@ export default function Home() {
       </Head>
     <Hero>
       <Heading>
-        lab 4 
+        Lab 4
       </Heading>
     </Hero>
 
-    
+
     </>
   )
 }

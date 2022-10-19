@@ -27,19 +27,19 @@ export default function Contact() {
       </Head>
       <Hero>
       <Heading>
-        voici nos chercheurs 
+        voici nos chercheurs
       <div>
             <h1>Stephan Hawqueen</h1>
-            <p>chercheur au sein du premier laboratoire Marsien et professeur particulier en physiques quantiques de elon Mousk</p>
-            <p>n'hésitez pas à visiter sa page wikipédia ou à lui envoyer un mail</p>  
+            <p>chercheur au sein du premier laboratoire Marsien et professeur particulier en physiques quantiques de Elon Mousk</p>
+            <p>n'hésitez pas à visiter sa page wikipédia ou à lui envoyer un mail</p>
                 <ul>
                     <li><a href="https://fr.wikipedia.org/wiki/Flat_Earth_Society">Wikipédia</a></li>
                     <li><a href="mailto:LaTerreEstPlate@lisse.fr">mail</a></li>
 
                 </ul>
             <h1>Magnus Carlsen</h1>
-            <p>d'abord équithérapeutique notre professeur a longhtemps étudier le comportement des chevaux pour ensuite créer le jeu d'échecs</p>
-            <p>n'hésitez pas à visiter ses recherches ou son classement</p>  
+            <p>d'abord équithérapeutique notre professeur a longtemps étudier le comportement des chevaux pour ensuite créer le jeu d'échecs</p>
+            <p>n'hésitez pas à visiter ses recherches ou son classement</p>
               <ul>
                 <li><a href="https://fr.wikipedia.org/wiki/Magnus_Carlsen">Recherches</a></li>
                <li><a>classement : 2856 </a></li>
