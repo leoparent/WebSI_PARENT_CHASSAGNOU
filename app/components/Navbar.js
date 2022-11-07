@@ -1,7 +1,7 @@
-import styled from "styled-components";
+
 import Link from "next/link";
 import Image from "next/image";
-import tadaronne from "../Images/Icon.jpg";
+import slt from "../Images/Icon.jpg";
 
 const Navbar = () => {
   return (
@@ -9,12 +9,7 @@ const Navbar = () => {
       <div class="container flex flex-wrap justify-between items-center mx-auto">
         <a href="www.linkedin.com/in/nicolas-saint" class="flex items-center">
           <div className=""> 
-          <Image
-            src={tadaronne}
-            alt="tadaronneenImage"
-            width="50px"
-            height="50px"
-          />
+          
            </div>
           <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white mx-5">
              WebSI
