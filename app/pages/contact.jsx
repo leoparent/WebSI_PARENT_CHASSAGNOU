@@ -18,16 +18,16 @@ export default function Contact() {
             <h5>chercheur au sein du premier laboratoire Marsien et professeur particulier en physiques quantiques de Elon Mousk</h5>
             <h5>n hésitez pas à visiter sa page wikipédia ou à lui envoyer un mail</h5>
                 <ul>
-                    <li><Link href="https://fr.wikipedia.org/wiki/Flat_Earth_Society">Wikipédia</Link></li>
-                    <li><Link href="mailto:LaTerreEstPlate@lisse.fr">mail</Link></li>
+                    <li><a href="https://fr.wikipedia.org/wiki/Flat_Earth_Society">Wikipédia</a></li>
+                    <li><a href="mailto:LaTerreEstPlate@lisse.fr">mail</a></li>
 
                 </ul>
             <h1>Magnus Carlsen</h1>
             <h5>d abord équithérapeutique notre professeur a longtemps étudier le comportement des chevaux pour ensuite créer le jeu d échecs</h5>
             <h5>n hésitez pas à visiter ses recherches ou son classement</h5>
               <ul>
-                <li><Link href="https://fr.wikipedia.org/wiki/Magnus_Carlsen">Recherches</Link></li>
-               <li><Link>classement : 2856 </Link></li>
+                <li><a href="https://fr.wikipedia.org/wiki/Magnus_Carlsen">Recherches</a></li>
+               <li><a>classement : 2856 </a></li>
 
                 </ul>
       </div>
