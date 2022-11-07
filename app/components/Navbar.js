@@ -16,8 +16,8 @@ const Navbar = () => {
             height="50px"
           />
            </div>
-          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            WebSI
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white mx-5">
+             WebSI
           </span>
         </a>
         <div class="flex md:order-2">

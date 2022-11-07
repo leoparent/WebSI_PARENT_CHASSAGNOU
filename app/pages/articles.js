@@ -1,13 +1,20 @@
 import Head from 'next/head'
 
 import Navbar from '../components/Navbar'
+export const getStaticProps = async() => {
+
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data=await res.json();
+  return{
+    props : {articles: data }
+    }
+  
+}
 
 
-
-export default function About() {
+const Articles = ({articles}) => {
   return (
-    <>
-      
+    <>  
        <div>
        <br></br>
       <br></br>
@@ -17,22 +24,14 @@ export default function About() {
         object-cover absolute mix-blend-overlay'/>
         <h1>
           <div>
-            Nous allons vous montrer nos planètes à vendre sur le dark système :
-
-            <h1>fuerza 94</h1>
-                <ul>
-                    <li><a>système_solaire : EXV65 </a></li>
-                    <li><a>type : soleil</a></li>
-                    <li><a>température : 200 degré celcius</a></li>
-                    <li><a>prix : 800M $</a></li>
-                </ul>
-            <h1>chicha94</h1>
-                <ul>
-                    <li><a>système_solaire : FDFI78 </a></li>
-                    <li><a>type : gazeuse</a></li>
-                    <li><a>température : 21 degré celcius</a></li>
-                    <li><a>prix : 10M $</a></li>
-                </ul>
+            <h1>All articles</h1>
+            {articles.map(article => (
+              <div key={article.id}>
+                <a>
+                  <h3>{article.name}</h3>
+                </a>
+                </div>
+            ))}
           </div>
         </h1>
        </div>
@@ -40,3 +39,4 @@ export default function About() {
     </>
   )
 }
+export default Articles;
