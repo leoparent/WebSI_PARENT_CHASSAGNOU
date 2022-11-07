@@ -1,52 +1,36 @@
 import Link from 'next/link';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Footer = () => {
-  return (
-<footer class="h-64 bg-white-500">
-    <div class="md:flex md:justify-between">
-        <div class="mb-6 md:mb-0">
-            <a href="https://flowbite.com/" class="flex items-center">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">WebSI</span>
-            </a>
-        </div>
-        <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-                <ul class="text-gray-600 dark:text-gray-400">
-                    <li class="mb-4">
-                        <a href="https://github.com/adaltas/ece-webtech-2022-fall/tree/main/courses/webtech/modules" class="hover:underline">WebSI</a>
-                    </li>
-                    <li>
-                        <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                <ul class="text-gray-600 dark:text-gray-400">
-                    <li class="mb-4">
-                        <a href="#" class="hover:underline">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="sm:flex sm:items-center sm:justify-between">
-        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com/" class="hover:underline">PARENT et </a>. All Rights Reserved.
-        </span>
-        <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
-            <a href="https://github.com/leoparent" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
-                <span class="sr-only">GitHub account</span>
-            </a>
-        </div>
-    </div>
-</footer>
+    return (
 
-  )
+        <footer class="p-4 bg-white rounded-lg border-2 shadow-2xl md:px-10 md:py-5 dark:bg-gray-90 fixed bottom-0 w-screen">
+
+            <div class="sm:flex sm:items-center sm:justify-between ">
+                <Link href="https://tailwindcss.com/" class="flex items-center mb-4 sm:mb-0">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png" class="mr-3 h-8" alt="Tailwind Logo" />
+                    <span class="self-center text-4 font-semibold whitespace-nowrap dark:text-white">Powered by Tailwind</span>
+                </Link>
+                <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <Link href="https://github.com/adaltas/ece-webtech-2022-fall" class="mr-4 hover:underline md:mr-6 "><GitHubIcon /></Link>
+                    </li>
+                    <li>
+                        <Link href="https://lecavalierdelatourelle.blogspot.com/2011/06/top-jeunes-leo-parent.html" class="mr-4 hover:underline md:mr-6"><InstagramIcon/></Link>
+                    </li>
+                    <li>
+                        <Link href="https://www.linkedin.com/in/paul-adrien-chassagniou-518442204/" class="hover:underline"><LinkedInIcon /></Link>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" /> Nous ne sommes rien sans React, Tailwind et l&apos;amour de nos parents.
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400 mt-4"><Link href="https://flowbite.com/" class="hover:underline">© 2022 PARENT et . All Rights Reserved.</Link>
+            </span>
+
+        </footer>
+    )
 }
 
 export default Footer
