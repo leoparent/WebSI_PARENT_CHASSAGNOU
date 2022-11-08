@@ -4,3 +4,4 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 Bienvenue sur le repository de PA et Léo
 
+Application déployer sia le lien : dinosore.vercel.app
