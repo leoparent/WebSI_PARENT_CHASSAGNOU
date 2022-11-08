@@ -7,13 +7,13 @@ export default function About() {
       <br></br>
       <br></br>
       <br></br>
-      <div class="bg-cover bg-center mx-14">
+      <div class="bg-cover bg-center mx-14 flex flex-col min-h-screen">
         
-      <h1>
-          Bienvenue sur notre site ! Vous allez ici voir toutes ses caractéristiques. <br></br>
-          Ici vous serez capable de vous renseignez sur toutes nos offres en rapport avec le monde de la science. <br></br>
-          Si vous êtes rêveur et que vous voulez décrocher la lune alors vous êtes au bon endroit ... <br></br><br></br>
-          Que les étoiles vous fassent briller !!
+      <h1 className='font-sans font-normal'>
+          Nous sommes SWILD, la galerie NFT n°1 dans le monde.
+          <br></br> Ici vous pourrez trouver le travail de plus de 10 000 artistes dans le monde entier.
+          <br></br> Fondée en 2022 par Léo Parent et Paul-Adrien Chassagniou, SWILD s'est rapidement vue leader sur le marché.
+          <br></br> Nous utilisons la technologie de la blockchain pour garentir l'authenticité des produits.
       </h1>
       </div>
     </div>

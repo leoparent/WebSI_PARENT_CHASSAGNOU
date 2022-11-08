@@ -17,7 +17,7 @@ const Articles = ({ articles }) => {
         <br></br>
         <br></br>
         <br></br>
-        <div class="bg-cover bg-center mx-14">
+        <div class="bg-cover bg-center mx-14 flex flex-col min-h-screen">
 
           <h1>
             <div>

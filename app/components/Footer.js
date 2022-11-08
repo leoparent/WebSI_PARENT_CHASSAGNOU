@@ -6,9 +6,9 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 const Footer = () => {
     return (
 
-        <footer class="p-4 bg-white rounded-lg border-2 shadow-2xl md:px-10 md:py-5 dark:bg-gray-90 fixed bottom-0 w-screen">
+        <footer class="p-4 md:px-10 md:py-5 mt-auto border-t-2">
 
-            <div class="sm:flex sm:items-center sm:justify-between ">
+            <div class=" sm:flex sm:items-center sm:justify-between">
                 <Link href="https://tailwindcss.com/" class="flex items-center mb-4 sm:mb-0">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png" class="mr-3 h-8" alt="Tailwind Logo" />
                     <span class="self-center text-4 font-semibold whitespace-nowrap dark:text-white">Powered by Tailwind</span>
