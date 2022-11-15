@@ -8,7 +8,6 @@ export default function Home() {
         <br></br>
         <br></br>
         <div class="bg-cover bg-center my-10 mx-14 shadow h-50 w-50 flex px-10 py-10 rounded-lg">
-
           <div className="flex-1">
             <Link href="https://opensea.io/fr/collection/arcus-rik" className="text-base font-medium text-gray-500 hover:text-gray-900">
               <img className="rounded-md mx-flex" src="https://i.seadn.io/gae/eoN3O1XQjf_HHULvsjoXc-gYyA1GgWw7zId9iBYZCH_HJpmCEGpMyxVWWgMvFogeM3ARWgx71klFZ6nCHEw0dzh5S0v833n1uDkmRA?auto=format&w=384" alt="" />
