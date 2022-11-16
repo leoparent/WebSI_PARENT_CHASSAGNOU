@@ -7,17 +7,20 @@ export default function handler(req,res)
     if(req.method === 'GET')
     {
     res.status(200).json(profiles)
-     }else if(req.method === 'POST')
+     }
+     else if(req.method === 'POST')
     {
         const profile = req.body.profile
+        const mdp = req.body.password
         const newProfile ={
             id: Date.now(),
-            password: profile,
+            password: mdp,
             name: profile 
         }
         profiles.push(newProfile)
         res.status(201).json(newProfile)
-    }else if(req.method === 'CONNECT')
+    }
+    else if(req.method === 'CONNECT')
     {
         var b=0
         for (var i = 0; i < dbClients.client.length; i++) {
