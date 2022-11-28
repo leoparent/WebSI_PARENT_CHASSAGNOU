@@ -1,10 +1,10 @@
 import Footer from "./Footer";
-import Example from "./header.jsx";
+import Header from "./header.jsx";
 
 export default function Layout({children}){
   return(
     <div class="">
-      <Example />
+      <Header />
       {children}
       <Footer />
     </div>

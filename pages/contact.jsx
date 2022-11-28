@@ -30,6 +30,8 @@ export default function Contact() {
 
               </ul>
             </div>
+            <div>
+            </div>
           </h1>
         </div>
       </div>
