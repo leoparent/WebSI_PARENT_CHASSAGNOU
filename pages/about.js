@@ -12,7 +12,7 @@ export default function Home({clients}){
     )
 }
 
-
+//leo est passer
 export const getStaticProps = async () =>  {
     const {data : clients} = await supabase.from("contacts").select("*")
     return {
