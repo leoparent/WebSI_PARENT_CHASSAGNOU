@@ -1,8 +1,20 @@
 import Link from "next/link"
+import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import Account from '../components/Account'
 
 export default function Home() {
+  const session = useSession()
+  const supabase = useSupabaseClient()
   return (
     <>
+        <div className="container" style={{ padding: '50px 0 100px 0' }}>
+      {!session ? (
+        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" />
+      ) : (
+        <Account session={session} />
+      )}
+    </div>
       <div className="mb-20 flex flex-col min-h-screen">
         <br></br>
         <br></br>
