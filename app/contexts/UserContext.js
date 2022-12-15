@@ -5,6 +5,8 @@ export default React.createContext(
         isLogged : false,
         setLog : value => {},
         user : "invité",
-        setUser : value => {""}
+        setUser : value => {""},
+        darkMode : false,
+        setDarkMode : value => {} 
     }
 );

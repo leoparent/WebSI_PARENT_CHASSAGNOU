@@ -7,9 +7,10 @@ function MyApp({ Component, pageProps }) {
 
   const [user, setUser] = useState("invité")
   const [isLogged, setLog] = useState(false)
+  const [darkMode, setDarkMode] = useState(false)
 
   return (
-    <UserContext.Provider value={{isLogged,setLog,user,setUser}}>
+    <UserContext.Provider value={{isLogged,setLog,user,setUser,darkMode,setDarkMode}}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
