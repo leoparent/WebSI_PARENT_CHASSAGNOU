@@ -6,6 +6,8 @@ import logo from "../public/logo.png"
 import logo_dark from "../public/logo_dark.png"
 import soleil from "../public/soleil.png"
 import lune from "../public/moon-symbol.png"
+import account from "../public/account.png"
+import account2 from "../public/account2.png"
 
 export default function Header() {
   const { user, setUser } = useContext(UserContext)
@@ -42,7 +44,7 @@ export default function Header() {
         {(isLogged && (
           <>
             <Link href="../" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-red-500">
-              <button
+              <button className="pl-10"
                 onClick={async () => {
                   setUser("invité")
                   setLog(false)
@@ -51,9 +53,9 @@ export default function Header() {
               </button>
             </Link>
             <div className="flex items-center">
-              <p className="px-5 ">{user}</p>
               <Link href="#" className="text-base font-medium text-gray-400 hover:text-gray-900 flex items-center" >
-                <img className="h-16 w-16" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-account-circle_89831.png" />
+                <p className="px-5 dark:text-white text-black  ">{user}</p>
+                <Image className="h-16 w-16" src={darkMode ? account2 : account} />
               </Link>
             </div>
 
