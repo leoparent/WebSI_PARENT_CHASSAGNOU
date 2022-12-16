@@ -6,13 +6,12 @@ import logo from "../public/logo.png"
 import logo_dark from "../public/logo_dark.png"
 import soleil from "../public/soleil.png"
 import lune from "../public/moon-symbol.png"
-import account from "../public/account.png"
-import account2 from "../public/account2.png"
+import Login from "./Login"
+import { useSession } from "@supabase/auth-helpers-react"
 
 export default function Header() {
-  const { user, setUser } = useContext(UserContext)
-  const { isLogged, setLog } = useContext(UserContext)
   const { darkMode, setDarkMode } = useContext(UserContext)
+  const session = useSession()
 
   return (
     <div className="mx-auto px-4 sm:px-6 dark:bg-black flex items-center justify-between border-b-2 dark:border-gray-800 border-gray-200 mb-10 py-6 md:justify-start md:space-x-10">
@@ -20,7 +19,8 @@ export default function Header() {
         <Link href="../" className="text-base font-medium text-gray-500">
           <Image className="rounded-full h-16 w-16" src={darkMode ? logo : logo_dark} />
         </Link>
-        <text className='dark:text-white ml-8 mt-5 text-base font-bold text-black-500'> IArtist </text>
+        <div class="dark:text-white ml-8 mt-5  text-black-500 text-xl font-bold ">IA</div>
+        <div class="dark:text-white mt-5  text-black-500 text-xl font-bold italic">rtist</div>
       </div>
       <Link href="../" className="text-base font-medium text-gray-400 dark:hover:text-white hover:text-black">
         Home
@@ -38,45 +38,10 @@ export default function Header() {
       <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
 
         <div className="bg-white rounded-full">
-          <button className="flex bg-center object-scale-down h-12 w-12" onClick={async () => { setDarkMode(!darkMode) }}> <Image src={darkMode ? soleil : lune}/></button>
+          <button className="flex bg-center object-scale-down h-12 w-12" onClick={async () => { setDarkMode(!darkMode) }}> <Image src={darkMode ? soleil : lune} /></button>
         </div>
-
-        {(isLogged && (
-          <>
-            <Link href="../" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-red-500">
-              <button className="pl-10"
-                onClick={async () => {
-                  setUser("invité")
-                  setLog(false)
-                }}>
-                Log out
-              </button>
-            </Link>
-            <div className="flex items-center">
-              <Link href="#" className="text-base font-medium text-gray-400 hover:text-gray-900 flex items-center" >
-                <p className="px-5 dark:text-white text-black  ">{user}</p>
-                <Image className="h-16 w-16" src={darkMode ? account2 : account} />
-              </Link>
-            </div>
-
-          </>
-        )) || (
-            <>
-              <Link href="/connect" className="ml-8 whitespace-nowrap text-base font-medium text-gray-400 dark:hover:text-white hover:text-black">
-                <button className="">
-                  Log in
-                </button>
-
-              </Link>
-              <Link
-                href="/profile"
-                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-              >
-                Sign up
-              </Link>
-            </>
-          )}
-
+        <Login session={session} />
+        
       </div>
 
     </div>
