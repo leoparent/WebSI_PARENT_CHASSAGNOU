@@ -1,6 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-##Lab8 - SUPABASE
+# Blogging application - ECE Webtech project
 
-La dernière version est disponible dans la branche master
+*This project is a website of IA art called "IArtist". The website is a place to see and share IA designed artworks by a new generation of artists.*
+
+## Production 
+
+- Vercel URL: https://...
+- Supabase project URL: https://app.supabase.com/project/...
+
+## Usage
+
+*Follow these steps to run the project :*
+
+* Clone this repository, from your local machine:
+  ```
+  git clone git@github.com:leoparent/WebSI_PARENT_CHASSAGNOU.git
+  ```
+* Start the the application
+  ```bash
+  cd app
+  # Install dependencies (use yarn or npm)
+  npm install
+  npm run build
+  npm start
+  ```
+* Start Supabase
+  ```bash
+  cd supabase
+  docker-compose up 
+  ```
+
+## Authors
+
+*Paul-Adrien Chassagniou, pauladrien.chassagniou@edu.ece.fr, Léo Parent, leo.parent@edu.ece.fr*
+
+## Tasks
+  
+**Project management:**
+
+* Naming convention   
+  *place your graduation and comments*
+* Project structure   
+  *place your graduation and comments*
+* Git   
+  *place your graduation and comments*
+* Code quality   
+  *place your graduation and comments*
+* Design, UX, and content   
+  *place your graduation and comments*
+
+**Application development:**
+
+* Home page   
+  *place your graduation and comments*
+* Login and profile page   
+  *place your graduation and comments*
+* New articles creation   
+  *place your graduation and comments*
+* New comment creation   
+  *place your graduation and comments*
+* Resource access control   
+  *place your graduation and comments*
+* Article modification   
+  *place your graduation and comments*
+* Article removal   
+  *place your graduation and comments*
+* Comment modification   
+  *place your graduation and comments*
+* Comment removal   
+  *place your graduation and comments*
+* Account settings   
+  *place your graduation and comments*
+* WYSIWYG integration   
+  *place your graduation and comments*
+* Gravatar integration   
+  *place your graduation and comments*
+* Light/dark theme   
+  *place your graduation and comments*
+* Accent color selection   
+  *place your graduation and comments*
+
+## Bonus
+
+* Task title   
+  *place your graduation and comments*
+
 
