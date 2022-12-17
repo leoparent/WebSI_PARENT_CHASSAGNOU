@@ -1,5 +1,43 @@
+import { useState } from 'react';
+import { useDropzone } from "react-dropzone";
+import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+
+
 export default function Article()
 {
+    const supabase = useSupabaseClient();
+    const user = useUser();
+    const [imageData, setImageData] = useState(null);
+    const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+        
+    reader.addEventListener('load', () => {
+      setImageData(reader.result);
+    });
+
+    reader.readAsArrayBuffer(file);
+  };
+  const [files, setFiles] = useState([]);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        )
+      );
+    },
+  });
+const thumbs = files.map((file) => (
+    <div className="" key={file.name}>
+      <img className="object-cover h-48 w-48" src={file.preview} alt="uploaded image" />
+    </div>
+    
+  ));
     return(
         <div class="container my-24 px-6 mx-auto">
         
@@ -25,7 +63,7 @@ export default function Article()
                     placeholder="Name"/>
                 </div>
                 <div class="form-group mb-6">
-                  <input type="email" class="form-control block
+                  <input type="text" class="form-control block
                     w-full
                     px-3
                     py-1.5
@@ -60,6 +98,11 @@ export default function Article()
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                   " id="exampleFormControlTextarea13" rows="3" placeholder="Message"></textarea>
                 </div>
+                <div>
+                <input type="file" onChange={handleImageChange} accept="image/*" />
+                {imageData && <img src={imageData} alt="Image sélectionnée" />}
+                </div>
+                
                 <br>
                 </br>
                 <button type="submit" class="
@@ -82,8 +125,20 @@ export default function Article()
                   ease-in-out">Send</button>
               </form>
             </div>
+            
           </section>
-        
+            <div>
+            <div className="items-center flex">
+        <div {...getRootProps()}>
+          <button className="mx-8 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+            <input {...getInputProps()} />
+            <p>Upload Image</p>
+          </button> 
         </div>
+        <aside>{thumbs}</aside>
+      </div>
+            </div>
+        </div>
+        
     );
 }
