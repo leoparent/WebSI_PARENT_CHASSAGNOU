@@ -19,8 +19,8 @@ export default function Header() {
         <Link href="../" className="text-base font-medium text-gray-500">
           <Image className="rounded-full h-16 w-16" src={darkMode ? logo : logo_dark} />
         </Link>
-        <div class="dark:text-white ml-8 mt-5  text-black-500 text-xl font-bold ">IA</div>
-        <div class="dark:text-white mt-5  text-black-500 text-xl font-bold italic">rtist</div>
+        <div className="dark:text-white ml-8 mt-5  text-black-500 text-xl font-bold ">IA</div>
+        <div className="dark:text-white mt-5  text-black-500 text-xl font-bold italic">rtist</div>
       </div>
       <Link href="../" className="text-base font-medium text-gray-400 dark:hover:text-white hover:text-black">
         Home
