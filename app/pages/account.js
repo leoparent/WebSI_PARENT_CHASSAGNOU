@@ -120,6 +120,12 @@ export default function Account({ session }) {
           Sign Out
         </button>
       </div>
+
+      <div className="py-5">
+        <button className="rounded-lg p-2 bg-blue-600 hover:bg-blue-800" onClick={() => supabase.auth.signOut()}>
+          add an article
+        </button>
+      </div>
     </div>
   );
 }
