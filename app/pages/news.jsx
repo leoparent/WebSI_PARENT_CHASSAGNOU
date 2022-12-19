@@ -1,7 +1,10 @@
-export default function News()
-{
-    return(
+
+export default function News() {
+
+
+    return (
         <>
+            
         </>
     );
 }

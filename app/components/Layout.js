@@ -11,7 +11,7 @@ export default function Layout({children}){
     <div className={darkMode ? "dark" : ""}>
       <div className="dark:bg-black">
         <Header />
-        <div className="py-10 min-h-screen max-w-full md:max-w-2xl md:mx-auto ">
+        <div className="py-10 min-h-screen">
           {children}
         </div>
         <Footer />

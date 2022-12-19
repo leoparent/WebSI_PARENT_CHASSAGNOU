@@ -27,7 +27,7 @@ export default function Account({ session }) {
       };
 
       let { err } = await supabase.from("profiles").insert(inserts);
-
+      
       let { data, error, status } = await supabase
         .from("profiles")
         .select(`username, website, avatar_url`)
@@ -43,6 +43,7 @@ export default function Account({ session }) {
         setWebsite(data.website);
         setAvatarUrl(data.avatar_url);
       }
+      
     } catch (error) {
       alert("Error loading user data!");
       console.log(error);
@@ -74,7 +75,7 @@ export default function Account({ session }) {
   }
 
   return (
-    <div className="bg-gray-300 rounded-3xl py-10 flex justify-center items-center flex-col">
+    <div className ="bg-gray-300 rounded-3xl py-10 flex justify-center items-center flex-col mx-auto w-1/2">
       <h1 className="font-medium text-gray-600 pb-10"> Account Settings</h1>
 
       <UserAvatar email={session.user.email} size={200} />
