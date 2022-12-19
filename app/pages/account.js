@@ -82,11 +82,11 @@ export default function Account({ session }) {
 
       <div className="py-5">
         <label htmlFor="email">Email : </label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <input className="rounded-lg" id="email" type="text" value={session.user.email} disabled />
       </div>
       <div className="py-5">
         <label htmlFor="username">Username : </label>
-        <input
+        <input className="rounded-lg"
           id="username"
           type="text"
           value={username || ""}
@@ -95,9 +95,9 @@ export default function Account({ session }) {
       </div>
       <div className="py-5">
         <label htmlFor="website">Website : </label>
-        <input
+        <input className="rounded-lg"
           id="website"
-          type="website"
+          type="text"
           value={website || ""}
           onChange={(e) => setWebsite(e.target.value)}
         />

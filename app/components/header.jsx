@@ -4,10 +4,9 @@ import UserContext from "../contexts/UserContext"
 import Image from "next/image"
 import logo from "../public/logo.png"
 import logo_dark from "../public/logo_dark.png"
-import soleil from "../public/soleil.png"
-import lune from "../public/moon-symbol.png"
 import Login from "./Login"
 import { useSession } from "@supabase/auth-helpers-react"
+import Button from "./Button"
 
 export default function Header() {
   const { darkMode, setDarkMode } = useContext(UserContext)
@@ -35,13 +34,8 @@ export default function Header() {
         About us
       </Link>
 
-      <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-
-        <div className="bg-white rounded-full">
-          <button className="flex bg-center object-scale-down h-12 w-12" onClick={async () => { setDarkMode(!darkMode) }}> <Image src={darkMode ? soleil : lune} /></button>
-        </div>
+      <div className="items-center justify-end md:flex md:flex-1 lg:w-0 gap-16">
         <Login session={session} />
-        
       </div>
 
     </div>
