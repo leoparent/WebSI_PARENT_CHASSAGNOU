@@ -29,10 +29,11 @@ export default function Article() {
     try {
       setLoading(true);
 
-      const file = image;
+      const uuid = v4()
+      const file = image
       const { data, err } = await supabase.storage
         .from("images")
-        .upload(user.id + "/" + v4(), file);
+        .upload(user.id + "/" + uuid, file);
 
       if (data) {
         alert("Image uploaded")
@@ -41,7 +42,7 @@ export default function Article() {
       }
 
       let { error } = await supabase.from("articles").insert({
-        id: v4(),
+        id: uuid,
         user_id: user.id,
         name: title,
         theme: theme,
@@ -111,8 +112,7 @@ export default function Article() {
           <button
             className="mt-12 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             onClick={() => Share({ title, theme, desc })}
-            disabled={loading}
-          >
+            disabled={loading}>
             {loading ? "Loading ..." : "Share it ;)"}
           </button>
         </div>
