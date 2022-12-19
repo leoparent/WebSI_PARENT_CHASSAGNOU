@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { v4 as uuidv4, v4 } from "uuid";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 export default function Article() {
   const user = useUser();
@@ -122,7 +123,7 @@ export default function Article() {
           {isDragActive ? (
             <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Drag and drop ;{")"}</p>
           ) : (
-            <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Upload image</p>
+            <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"><UploadFileIcon/> Upload image</p>
           )}
           <img src={previewUrl} alt="" className="rounded-lg" />
         </div>

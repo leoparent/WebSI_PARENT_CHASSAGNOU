@@ -10,7 +10,6 @@ export default function Home() {
           <Image src={logo} />
         </ul>
       </div>
-
     </>
   )
 }

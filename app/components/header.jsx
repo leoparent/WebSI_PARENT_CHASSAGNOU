@@ -6,7 +6,6 @@ import logo from "../public/logo.png"
 import logo_dark from "../public/logo_dark.png"
 import Login from "./Login"
 import { useSession } from "@supabase/auth-helpers-react"
-import Button from "./Button"
 
 export default function Header() {
   const { darkMode, setDarkMode } = useContext(UserContext)
