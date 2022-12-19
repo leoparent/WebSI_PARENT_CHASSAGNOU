@@ -36,9 +36,7 @@ export default function Article() {
         .from("images")
         .upload(user.id + "/" + uuid, file);
 
-      if (data) {
-        alert("Image uploaded")
-      } else {
+      if (data == null) {
         alert("Error Uploading Image");
       }
 
@@ -59,6 +57,10 @@ export default function Article() {
       console.log(error);
     } finally {
       setLoading(false);
+      setTitle("") 
+      setTheme("") 
+      setDesc("")
+      setPreviewUrl(null)
     }
   }
 
@@ -80,7 +82,7 @@ export default function Article() {
           <div className="mb-6">
             <input
               type="text"
-              className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
+              className="block w-full px-3 py-1.5 text-base font-medium dark: text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
                     transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="Title"
               placeholder="Title"
