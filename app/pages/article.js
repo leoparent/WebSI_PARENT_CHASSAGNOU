@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { v4 as uuidv4, v4 } from "uuid";

@@ -1,6 +1,5 @@
 import { useState,useEffect } from "react";
 import { useUser, useSupabaseClient, useSession } from "@supabase/auth-helpers-react";
-import { userInfo } from "os";
 
 export default function Home() {
   const user = useUser();

@@ -12,8 +12,8 @@ const Footer = () => {
 
             <div className=" sm:flex sm:items-center sm:justify-between">
                 <Link href="https://openai.com/dall-e-2/" className="flex items-center mb-4 sm:mb-0">
-                    <Image src={logo}  className="rounded-full mr-3 w-8 h-8" />
-                    <span className="self-center dark:text-gray-400 text-gray-500 hover:text-black dark:hover:text-white text-base font-medium whitespace-nowrap">Logo designed with DALL.E</span>
+                    <Image src={logo}  className= "rounded-full mr-3 w-8 h-8" />
+                    <span className ="self-center dark:text-gray-400 text-gray-500 hover:text-black dark:hover:text-white text-base font-medium whitespace-nowrap">Logo designed with DALL.E</span>
                 </Link>
                 <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-white">
                     <li>
