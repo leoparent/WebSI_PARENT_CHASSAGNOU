@@ -21,9 +21,7 @@ export default function ImagePage() {
   const [surname , setSurname] = useState(null)
   const [comments, setComments] = useState([]);
   const [comment_content, setComment_content] = useState(null)
-  const [infos, setInfos] = useState([]);
-  const [hidden ,setHidden] = useState(false)
-  let compteur = 0
+  
 
   useEffect(() => {
     if (user) {
@@ -162,6 +160,27 @@ export default function ImagePage() {
     }
   }
 
+  async function DeleteComment({comment_id})
+  {
+    try {
+      setLoading(true);
+
+      let { data, error } = await supabase
+        .from("comments")
+        .delete()
+        .eq(`id`, comment_id);
+
+      if (error) {
+        alert("Error Deleting Image");
+      }
+    } catch (error) {
+      console.log("DELETE comments");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       {username == user?.id ? (
@@ -238,27 +257,25 @@ export default function ImagePage() {
               />
             </div>
           </div>
-          {infos.map((comment) => {
+          {
+          comments.map((comment) => {
             return (
-              <>
-                <div className="bg-gray-50 mx-12 my-5 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600">
+                <div className="bg-gray-50 mx-12 my-5 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                    <p
-                      id="comment"
-                      rows="4"
-                      className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                    >
+                    <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
                       {comment.content}
                     </p>
                   </div>
                   <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                     <div className="flex items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
-                      <UserAvatar email={comment.email} size={50} />
+                      <UserAvatar email={comment.email} size={45} />
                       {comment.username}
+                      <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
+                        Delete Comments
+                      </button>
                     </div>
                   </div>
                 </div>
-              </>
             );
           })}
         </>
@@ -282,7 +299,6 @@ export default function ImagePage() {
             </div>
           </div>
           
-          <p>{hidden}</p>
           <div className="mx-12 my-5 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800" >
               <textarea
@@ -310,8 +326,6 @@ export default function ImagePage() {
               </div>
             </div>
           </div>
-
-          {console.log(infos)}
           {
           comments.map((comment) => {
             return (
