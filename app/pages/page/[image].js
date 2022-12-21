@@ -21,15 +21,16 @@ export default function ImagePage() {
   const [surname , setSurname] = useState(null)
   const [comments, setComments] = useState([]);
   const [comment_content, setComment_content] = useState(null)
-  const [selected_comment , setSelected_comment] = useState(null)
 
   useEffect(() => {
     if (user) {
       getImage()
       getUsername()
       getComments()
+      console.log(session)
     } else {
       router.push("/login");
+      console.log("DECO")
     }
   }, [session]);  
 
@@ -220,7 +221,7 @@ export default function ImagePage() {
 
   return (
     <>
-      {username == user?.id ? (
+      {username == session?.user?.id ? (
         <>
           <div className="p-10 mx-2 justify-between grid grid-cols-2 gap-20">
             <div className="text-center">
@@ -351,7 +352,7 @@ export default function ImagePage() {
           })}
         </>
       ) : (
-        <>
+        <>       
           <div className="p-10 mx-2 justify-between grid grid-cols-2 gap-20">
             <img
               className="rounded-lg w-full h-auto"
@@ -393,7 +394,7 @@ export default function ImagePage() {
 
               <div className="flex pl-0 space-x-1 sm:pl-2 text-center items-center gap-10 text-gray-900 dark:text-white">
                 {surname}
-                <UserAvatar email={session.user.email} size={45} />
+                <UserAvatar email={session?.user.email} size={45} />
               </div>
             </div>
           </div>
