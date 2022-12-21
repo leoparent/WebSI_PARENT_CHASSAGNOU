@@ -1,6 +1,6 @@
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Account from './account'
+import Account from '../components/account'
 import { useContext } from 'react'
 import UserContext from '../contexts/UserContext'
 

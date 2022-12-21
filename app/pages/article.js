@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useUser, useSupabaseClient, useSession } from "@supabase/auth-helpers-react";
 import { v4 as uuidv4, v4 } from "uuid";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { useRouter } from "next/router";
 
 export default function Article() {
   const user = useUser();
   const supabase = useSupabaseClient();
   const CDN_URL = "localhost:8000/storage/v1/object/public/images/";
+  const session = useSession();
+  const router = useRouter();
 
   const [title, setTitle] = useState(null);
   const [theme, setTheme] = useState(null);
@@ -23,6 +26,12 @@ export default function Article() {
       setImage(file);
     },
   });
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }  
+  }, [session]);  
 
   const [previewUrl, setPreviewUrl] = useState(null);
 

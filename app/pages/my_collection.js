@@ -1,9 +1,11 @@
 import { useState,useEffect } from "react";
 import { useUser, useSupabaseClient, useSession } from "@supabase/auth-helpers-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function My_Collection() {
   const user = useUser();
+  const router = useRouter();
   const session = useSession();
   const supabase = useSupabaseClient();
   const CDN_URL = "http://localhost:8000/storage/v1/object/public/images/";
@@ -11,8 +13,12 @@ export default function My_Collection() {
   const [infos, setInfos] = useState([])
 
   useEffect(() => {
-    getCollection()
-  }, [session]);
+    if (user) {
+      getCollection();
+    } else {
+      router.push("/login");
+    }
+  }, [session]); 
 
   async function getCollection() {
     try {
@@ -23,7 +29,6 @@ export default function My_Collection() {
 
       if(data)
       {
-        console.log(data)
         setInfos(data)
       }
 
@@ -40,7 +45,7 @@ export default function My_Collection() {
   return (
     <> 
         <h1 className="mb-20 text-center text-2xl font-medium text-gray-400 ">My collection </h1>
-        <div className="ml-20 gap-x-10 gap-y-20 grid grid-cols-3">{console.log(session.user.id)}
+        <div className="ml-20 gap-x-10 gap-y-20 grid grid-cols-3">
             {
                 infos.map( (image)=> {
                     return (

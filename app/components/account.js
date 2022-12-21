@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
-import UserAvatar from "../components/Gravatar";
+import UserAvatar from "./Gravatar";
 import UserContext from "../contexts/UserContext"
 import Link from "next/link";
-import { get } from "http";
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient();
