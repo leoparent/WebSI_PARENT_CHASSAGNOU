@@ -9,10 +9,11 @@ import { useSession } from "@supabase/auth-helpers-react"
 
 export default function Header() {
   const { darkMode, setDarkMode } = useContext(UserContext)
+  const { Accentuation, setAccentuation } = useContext(UserContext)
   const session = useSession()
 
   return (
-    <div className="mx-auto px-4 sm:px-6 dark:bg-black flex items-center justify-between border-b-2 dark:border-gray-800 border-gray-200 mb-10 py-6 md:justify-start md:space-x-10">
+    <div className={"mx-auto px-4 sm:px-6 dark:bg-black flex items-center justify-between border-b-2 dark:border-gray-800 border-gray-200 mb-10 py-6 md:justify-start md:space-x-10 "+Accentuation}>
       <div className="flex justify-start lg:w-0 lg:flex-1">
         <Link href="../" className="text-base font-medium text-gray-500">
           <Image className="rounded-full h-16 w-16" src={darkMode ? logo : logo_dark} />

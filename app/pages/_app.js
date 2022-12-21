@@ -11,10 +11,11 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState("")
   const [isLogged, setLog] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
+  const [Accentuation, setAccentuation] = useState(false)
 
   return (
     <SessionContextProvider supabaseClient={supabase} initialSession={pageProps.initialSession}>
-      <UserContext.Provider value={{isLogged,setLog,user,setUser,darkMode,setDarkMode}}>
+      <UserContext.Provider value={{isLogged,setLog,user,setUser,darkMode,setDarkMode,Accentuation,setAccentuation}}>
         <Layout>
           <Component {...pageProps} />
         </Layout>

@@ -4,11 +4,15 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import { FaDiscord } from "react-icons/fa";
 import Image from 'next/image';
 import logo from "../public/logo.png"
+import { useContext } from 'react';
+import UserContext from '../contexts/UserContext';
 
 const Footer = () => {
+
+    const {Accentuation, setAccentuation} = useContext(UserContext)
     return (
 
-        <footer className="dark:bg-black dark:border-gray-800 p-4 md:px-10 md:py-5 border-t-2  border-gray-200 mt-10">
+        <footer className={"dark:bg-black dark:border-gray-800 p-4 md:px-10 md:py-5 border-t-2  border-gray-200 mt-10 "+Accentuation}>
 
             <div className=" sm:flex sm:items-center sm:justify-between">
                 <Link href="https://openai.com/dall-e-2/" className="flex items-center mb-4 sm:mb-0">
