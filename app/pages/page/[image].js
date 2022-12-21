@@ -21,7 +21,7 @@ export default function ImagePage() {
   const [surname , setSurname] = useState(null)
   const [comments, setComments] = useState([]);
   const [comment_content, setComment_content] = useState(null)
-  
+  const [selected_comment , setSelected_comment] = useState(null)
 
   useEffect(() => {
     if (user) {
@@ -106,29 +106,48 @@ export default function ImagePage() {
   async function Delete() {
     try {
       setLoading(true);
+      DeleteComment_Image();
+      DeleteImage();
 
-      let { data, error } = await supabase
-        .from("articles")
-        .delete()
-        .eq(`id`, ImageID);
+      let {data, error} = await supabase
+      .from("articles")
+      .delete()
+      .eq(`id`, ImageID)
 
-      if (error) {
-        alert("Error Deleting Image");
+      if(error)
+      {
+        throw error
       }
 
-      let { err } = await supabase.storage
-        .from("images")
-        .remove([user.id + "/" + ImageID]);
-
-      if (err) {
-        alert(err);
-      }
     } catch (error) {
       console.log("DELETE");
       console.log(error);
     } finally {
       setLoading(false);
     }
+  }
+
+  async function DeleteComment_Image()
+  {
+    let { data } = await supabase
+    .from("comments")
+    .delete()
+    .eq(`article_id`, ImageID);
+  }
+
+  async function DeleteImage()
+  {
+    let { data,error } = await supabase.storage
+        .from("images")
+        .remove([user.id + "/" + ImageID]);
+
+      if (data) {
+        console.log("Image supprimee")
+      }
+      else
+      {
+        alert(error)
+      }
   }
 
   async function Comment({ comment_content }) {
@@ -160,7 +179,7 @@ export default function ImagePage() {
     }
   }
 
-  async function DeleteComment({comment_id})
+  async function DeleteComment(comment_id)
   {
     try {
       setLoading(true);
@@ -178,6 +197,24 @@ export default function ImagePage() {
       console.log(error);
     } finally {
       setLoading(false);
+      getComments();
+    }
+  }
+
+  async function UpdateComment(comment_id) ///// A FAIRE
+  {
+    try {
+      setLoading(true);
+
+      if (error) {
+        alert("Error Deleting Image");
+      }
+    } catch (error) {
+      console.log("DELETE comments");
+      console.log(error);
+    } finally {
+      setLoading(false);
+      getComments();
     }
   }
 
@@ -257,6 +294,33 @@ export default function ImagePage() {
               />
             </div>
           </div>
+          <div className="mx-12 my-5 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800" >
+              <textarea
+                id="comment"
+                rows="3"
+                className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
+                transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Write a comment ..."
+                value={comment_content || ""}
+                onChange={(e) => setComment_content(e.target.value)}
+                required
+              ></textarea>
+            </div>
+            <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+              <button
+                type="button"
+                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                onClick={() => Comment({ comment_content })}>
+                Post
+              </button>
+
+              <div className="flex pl-0 space-x-1 sm:pl-2 text-center items-center gap-10 text-gray-900 dark:text-white">
+                {surname}
+                <UserAvatar email={session.user.email} size={45} />
+              </div>
+            </div>
+          </div>
           {
           comments.map((comment) => {
             return (
@@ -266,14 +330,21 @@ export default function ImagePage() {
                       {comment.content}
                     </p>
                   </div>
-                  <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-                    <div className="flex items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
+                  <div className="grid grid-cols-2 items-center px-3 py-2 border-t dark:border-gray-600">
+                    <div className="flex justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
                       {comment.username}
+                      
+                    </div>
+                    <div className="flex justify-end items-center gap-5">
+                      <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700"> 
+                            Modify
+                      </button>
                       <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
-                        Delete Comments
+                            Delete Comments
                       </button>
                     </div>
+                    
                   </div>
                 </div>
             );
@@ -343,7 +414,19 @@ export default function ImagePage() {
                     <div className="flex items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
                       {comment.username}
-                    </div>
+                    </div>  
+                    {
+                        username == user.id ?
+                        (
+                          <></>
+                        ) :
+                        (
+                          <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
+                            Delete Comments
+                          </button>
+                        )
+                      }
+                    
                   </div>
                 </div>
             );
