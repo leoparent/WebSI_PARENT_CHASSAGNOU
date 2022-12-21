@@ -38,15 +38,15 @@ export default function Home() {
   }
   return (
     <> 
-          <section class="overflow-hidden text-gray-700">
-            <div class="grid grid-cols-3 gap-4 flex items-center">
+          <section className="overflow-hidden text-gray-700">
+            <div className="grid grid-cols-3 gap-4 items-center">
 
                  {
                   
                   infos.map((image)=>{
                     return (
-                  <div class="mb-4">
-                    <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg"
+                  <div className="mb-4">
+                    <img alt="gallery" className="block object-cover object-center w-full h-full rounded-lg"
                       src={CDN_URL + image.user_id + "/" + image.id}/>
                   </div>   
                     )

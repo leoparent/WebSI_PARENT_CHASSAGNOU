@@ -10,6 +10,7 @@ export default function Account({ session }) {
   const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
 
+
   useEffect(() => {
     getProfile()
   }, [session]);
@@ -22,6 +23,7 @@ export default function Account({ session }) {
         id: user.id,
         username,
         website,
+        email : user.email,
         avatar_url,
         updated_at: new Date().toISOString(),
       };
@@ -30,7 +32,7 @@ export default function Account({ session }) {
       
       let { data, error, status } = await supabase
         .from("profiles")
-        .select(`username, website, avatar_url`)
+        .select(`username, website, avatar_url, email`)
         .eq("id", user.id)
         .single();
 
@@ -106,7 +108,7 @@ export default function Account({ session }) {
       <div className="py-5">
         <button
           className="rounded-lg p-2  bg-green-500 hover:bg-green-700"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={() => updateProfile({ username, website, avatar_url})}
           disabled={loading}
         >
           {loading ? "Loading ..." : "Update"}

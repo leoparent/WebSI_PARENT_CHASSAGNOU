@@ -1,7 +1,6 @@
 import { useState,useEffect } from "react";
 import { useUser, useSupabaseClient, useSession } from "@supabase/auth-helpers-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function My_Collection() {
   const user = useUser();
@@ -10,7 +9,6 @@ export default function My_Collection() {
   const CDN_URL = "http://localhost:8000/storage/v1/object/public/images/";
 
   const [infos, setInfos] = useState([])
-  const router = useRouter()
 
   useEffect(() => {
     getCollection()
@@ -42,12 +40,12 @@ export default function My_Collection() {
   return (
     <> 
         <h1 className="mb-20 text-center text-2xl font-medium text-gray-400 ">My collection </h1>
-        <div className="ml-20 gap-x-10 gap-y-20 grid grid-cols-3">
+        <div className="ml-20 gap-x-10 gap-y-20 grid grid-cols-3">{console.log(session.user.id)}
             {
                 infos.map( (image)=> {
                     return (
-                        <>
-                            <div className="max-w-lg bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        
+                            <div className="max-w-lg bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700" key={image.id}>
                                 <Link href= { '/page/'+ image.id } >
                                     <img className="rounded-t-lg" src={CDN_URL + user.id + "/" + image.id} alt="" />
                                     <div className="p-5">
@@ -57,7 +55,7 @@ export default function My_Collection() {
                                 </Link>
                                 
                             </div>
-                        </>
+                        
                     )
                 })
             }
