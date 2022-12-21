@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import UserAvatar from "../components/Gravatar";
+import UserContext from "../contexts/UserContext"
+
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient();
@@ -9,6 +11,7 @@ export default function Account({ session }) {
   const [username, setUsername] = useState(null);
   const [website, setWebsite] = useState(null);
   const [avatar_url, setAvatarUrl] = useState(null);
+  const { Accentuation, setAccentuation } = useContext(UserContext)
 
 
   useEffect(() => {
@@ -123,6 +126,14 @@ export default function Account({ session }) {
           Sign Out
         </button>
       </div>
+      <div>
+    <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="bleu" className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">blue</button>
+    <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="violet" className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">purple</button>
+    <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="blanc" className="inline-block px-6 py-2.5 bg-white-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-white-700 hover:shadow-lg focus:bg-white-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white-800 active:shadow-lg transition duration-150 ease-in-out">white</button>
+
+    <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="vert" className="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">green</button>
+    <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="jaune" className="inline-block px-6 py-2.5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out">orange</button>
+    </div>
     </div>
   );
 }

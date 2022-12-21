@@ -7,6 +7,8 @@ export default React.createContext(
         user : "",
         setUser : value => {""},
         darkMode : false,
-        setDarkMode : value => {} 
+        setDarkMode : value => {}, 
+        Accentuation : "",
+        setAccentuation : value => {""},
     }
 );
