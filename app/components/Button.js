@@ -31,9 +31,6 @@ export default function Button () {
                                 <Link onClick={toggle} href="/article" className="block py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">New Post</Link>
                                 </li>
                                 <li>
-                                <Link onClick={toggle} href="/" className="block py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">????</Link>
-                                </li>
-                                <li>
                                 <Link onClick={toggle} href="/login" className="block py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">Settings</Link>
                                 </li>
                             </ul>

@@ -21,16 +21,15 @@ export default function ImagePage() {
   const [surname , setSurname] = useState(null)
   const [comments, setComments] = useState([]);
   const [comment_content, setComment_content] = useState(null)
+  const [ hidden, setHidden] = useState(false)
 
   useEffect(() => {
     if (user) {
       getImage()
       getUsername()
       getComments()
-      console.log(session)
     } else {
       router.push("/login");
-      console.log("DECO")
     }
   }, [session]);  
 
@@ -206,6 +205,7 @@ export default function ImagePage() {
   {
     try {
       setLoading(true);
+      setHidden(comment_id);
 
       if (error) {
         alert("Error Deleting Image");
@@ -327,9 +327,23 @@ export default function ImagePage() {
             return (
                 <div className="bg-gray-50 mx-12 my-5 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                    <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
-                      {comment.content}
-                    </p>
+                    { hidden === comment.id ?
+                    (
+                      
+                      <textarea
+                        id="comment"
+                        rows="3"
+                        className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
+                        transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Write a comment ..." value={comment_content || ""}  onChange={(e) => setComment_content(e.target.value)} required></textarea>
+                    ):
+                    (
+                      <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
+                        {comment.content}
+                      </p>
+                    )
+                      
+                    }
                   </div>
                   <div className="grid grid-cols-2 items-center px-3 py-2 border-t dark:border-gray-600">
                     <div className="flex justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
@@ -338,9 +352,17 @@ export default function ImagePage() {
                       
                     </div>
                     <div className="flex justify-end items-center gap-5">
-                      <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700"> 
+                      {
+                      comment.user_id == user.id ?
+                        (
+                          <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700"> 
                             Modify
-                      </button>
+                          </button>
+                        ) :
+                        (
+                          <></>
+                        )
+                      }
                       <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
                             Delete Comments
                       </button>
@@ -417,14 +439,14 @@ export default function ImagePage() {
                       {comment.username}
                     </div>  
                     {
-                        username == user.id ?
-                        (
-                          <></>
-                        ) :
+                        comment.user_id == user.id ?
                         (
                           <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
                             Delete Comments
                           </button>
+                        ) :
+                        (
+                          <></>
                         )
                       }
                     
