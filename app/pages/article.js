@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function Article() {
   const user = useUser();
   const supabase = useSupabaseClient();
-  const CDN_URL = "localhost:8000/storage/v1/object/public/images/";
+  const CDN_URL = "https://app.supabase.com/project/skosgopoasczfbihkylx/storage/buckets/images";
   const session = useSession();
   const router = useRouter();
 

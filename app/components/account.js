@@ -15,7 +15,6 @@ export default function Account({ session }) {
   const [username, setUsername] = useState(null);
   const [getusername, getUsername] = useState(null);
   const [website, setWebsite] = useState(null);
-  const [avatar_url, setAvatarUrl] = useState(null);
   const { Accentuation, setAccentuation } = useContext(UserContext)
 
 
@@ -32,7 +31,6 @@ export default function Account({ session }) {
         username,
         website,
         email : user.email,
-        avatar_url,
         updated_at: new Date().toISOString(),
       };
 
@@ -40,7 +38,7 @@ export default function Account({ session }) {
       
       let { data, error, status } = await supabase
         .from("profiles")
-        .select(`username, website, avatar_url, email`)
+        .select(`username, website, email`)
         .eq("id", user.id)
         .single();
 
@@ -52,7 +50,6 @@ export default function Account({ session }) {
         setUsername(data.username);
         getUsername(data.username);
         setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
       }
       
     } catch (error) {
@@ -91,7 +88,6 @@ export default function Account({ session }) {
         id: user.id,
         username : username,
         website : website,
-        avatar_url : null,
         updated_at: new Date().toISOString(),
       };
 
