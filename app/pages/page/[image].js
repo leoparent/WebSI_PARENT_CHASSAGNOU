@@ -23,7 +23,9 @@ export default function ImagePage() {
   const [comments, setComments] = useState([]);
   const [comment_content, setComment_content] = useState(null)
   const [comment_content2, setComment_content2] = useState(null)
-
+  const [postDate , setPostDate] = useState("");
+  const [whoPostedUsername , setWhoPostedUsername] = useState("");
+  const [whoPostedMAIL , setWhoPostedMAIL] = useState("");
   const [ hidden, setHidden] = useState(false)
 
   useEffect(() => {
@@ -294,7 +296,7 @@ export default function ImagePage() {
                   placeholder="Description"
                 ></textarea>
               </div>
-              <div className="my-20 grid grid-cols-2 space-x-1 items-center text-gray-100 dark:text-gray-400">
+              <div className="my-20 grid grid-cols-2 space-x-1 items-center text-gray-700 dark:text-gray-400">
                 <p className="font-medium">{"Posted at : " + new Date(postDate).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                 <div className="flex justify-end items-center gap-5 lg:gap-10 md:gap-10">
                   <p className="font-bold text-gray-700 dark:text-gray-400">{whoPostedUsername}</p>
@@ -392,16 +394,16 @@ export default function ImagePage() {
           <div className="p-10 mx-2 grid lg:grid-cols-2 md:grid-cols-2 gap-20">
             <img className="rounded-lg w-auto h-auto" src={CDN_URL + username + "/" + ImageID} alt="" />
             <div className="flex flex-col justify-start gap-10">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 className="mb-10 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {title}
               </h5>
-              <p className="mb-3 font-medium text-gray-700 dark:text-gray-400">
+              <p className="mb-6 font-medium text-gray-700 dark:text-gray-400">
                 {desc}
               </p>
               <p className="mb-3 font-medium text-gray-700 dark:text-gray-400">
                 Categories : {theme} 
               </p>
-              <div className="grid grid-cols-2 space-x-1 items-center gap-5 text-gray-100 dark:text-gray-400">
+              <div className="grid grid-cols-2 space-x-1 items-center gap-5 text-gray-700 dark:text-gray-400">
                 <p className="font-medium">{"Posted at : " + new Date(postDate).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                 <div className="flex justify-end items-center gap-10">
                   <p className="font-bold text-gray-700 dark:text-gray-400">{whoPostedUsername}</p>
@@ -445,9 +447,22 @@ export default function ImagePage() {
             return (
                 <div className="bg-gray-50 mx-12 my-5 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                    <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
-                      {comment.content}
-                    </p>
+                    { hidden === comment.id ?
+                    (
+                      
+                      <textarea
+                        id="comment"
+                        rows="3"
+                        className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
+                        transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Write a comment ..." value={comment_content2 || ""}  onChange={(e) => setComment_content2(e.target.value)}  required></textarea>
+                    ):
+                    (
+                      <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
+                        {comment.content}
+                      </p>
+                    )
+                    }
                   </div>
                   <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                     <div className="flex items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-700 dark:text-white">
@@ -458,9 +473,15 @@ export default function ImagePage() {
                     {
                         comment.user_id == user.id ?
                         (
+                        <div className="flex gap-10">
+                          <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700" value="hdh"> 
+                            Modify
+                          </button>
                           <button onClick={()=> DeleteComment(comment.id,comment.content)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
                             Delete Comments
                           </button>
+                        </div>
+                          
                         ) :
                         (
                           <></>
