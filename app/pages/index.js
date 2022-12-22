@@ -5,7 +5,7 @@ export default function Home() {
   const user = useUser();
   const session = useSession();
   const supabase = useSupabaseClient();
-  const CDN_URL = "http://localhost:8000/storage/v1/object/public/images/";
+  const CDN_URL = "https://app.supabase.com/project/skosgopoasczfbihkylx/storage/buckets/images";
   const [classe, setClasse] = useState("w-1/2 p-1 md:p-2")
   const [infos, setInfos] = useState([])
   const [username, setUsername] = useState([])

@@ -7,7 +7,7 @@ export default function Collection() {
     const user = useUser();
     const session = useSession();
     const supabase = useSupabaseClient();
-    const CDN_URL = "http://localhost:8000/storage/v1/object/public/images/";
+    const CDN_URL = "https://app.supabase.com/project/skosgopoasczfbihkylx/storage/buckets/images";
 
     const [infos, setInfos] = useState([])
     const [users, setUsers] = useState([])
