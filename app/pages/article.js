@@ -93,10 +93,7 @@ export default function Article() {
               type="text"
               className="block w-full px-3 py-1.5 text-base font-medium dark: text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
                     transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="Title"
-              placeholder="Title"
-              value={title || ""}
-              onChange={(e) => setTitle(e.target.value)}
+              id="Title" placeholder="Title" value={title || ""} onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="mb-6">

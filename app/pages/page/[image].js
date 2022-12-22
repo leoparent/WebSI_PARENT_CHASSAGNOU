@@ -18,21 +18,26 @@ export default function ImagePage() {
   const [desc, setDesc] = useState("");
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
-  const [surname , setSurname] = useState(null)
+
+  const [surname , setSurname] = useState("");
   const [comments, setComments] = useState([]);
-  const [comment_content, setComment_content] = useState(null)
-  const [ hidden, setHidden] = useState(false)
+  const [comment_content, setComment_content] = useState("");
+  const [ hidden, setHidden] = useState(false);
+  const [whoPostedMAIL, setWhoPostedMAIL] = useState("");
+  const [whoPostedUsername, setWhoPostedUsername] = useState("");
+  const [postDate, setPostDate] = useState("");
 
   useEffect(() => {
     if (user) {
       getImage()
+      getWhoPosted()
       getUsername()
       getComments()
+
     } else {
       router.push("/login");
     }
-  }, [session]);  
-
+  }, [session , username]);  
 
   async function getImage() {
     let { data, error } = await supabase
@@ -46,7 +51,7 @@ export default function ImagePage() {
       setTitle(data.name);
       setTheme(data.theme);
       setDesc(data.description);
-      
+      setPostDate(data.created_at);
     } else {
       alert("Error image");
     }
@@ -77,6 +82,22 @@ export default function ImagePage() {
     if(data)
     {
       setSurname(data.username);
+    }
+  }
+
+  async function getWhoPosted() {
+    
+    let { data, error } = await supabase
+      .from("profiles")
+      .select(`*`)
+      .eq(`id`, username).single();
+      
+    if (data) {
+      setWhoPostedMAIL(data.email);
+      setWhoPostedUsername(data.username);
+
+    } else {
+      console.log("Error getting who posted");
     }
   }
 
@@ -223,7 +244,8 @@ export default function ImagePage() {
     <>
       {username == session?.user?.id ? (
         <>
-          <div className="p-10 mx-2 justify-between grid grid-cols-2 gap-20">
+          <div className="p-10 mx-2 grid lg:grid-cols-2 gap-20">
+            <img src={CDN_URL + username + "/" + ImageID} alt="" className="rounded-lg w-auto h-auto"/>
             <div className="text-center">
               <div className="mb-14">
                 <text className="dark:text-white  text-black-500 text-xl font-bold italic ">
@@ -269,44 +291,31 @@ export default function ImagePage() {
                   placeholder="Description"
                 ></textarea>
               </div>
-              <button
-                className="mt-12 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                onClick={() => Update({ title, theme, desc })}
-                disabled={loading}
-              >
+              <div className="my-20 grid grid-cols-2 space-x-1 items-center text-gray-100 dark:text-gray-400">
+                <p className="font-medium">{"Posted at : " + new Date(postDate).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
+                <div className="flex justify-end items-center gap-5 lg:gap-10 md:gap-10">
+                  <p className="font-bold text-gray-700 dark:text-gray-400">{whoPostedUsername}</p>
+                  <UserAvatar email={whoPostedMAIL} size={45} />
+                </div>
+              </div>
+              <button className="mt-12 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                onClick={() => Update({ title, theme, desc })} disabled={loading}>
                 {loading ? "Loading ..." : "Update it ;)"}
               </button>
               <Link href="/my_collection" className="px-10">
-                <button
-                  className="mt-12 rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"
-                  onClick={() => Delete()}
-                  disabled={loading}
-                >
+                <button className="mt-12 rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"
+                  onClick={() => Delete()} disabled={loading}>
                   {loading ? "Loading ..." : "Delete it :("}
                 </button>
               </Link>
-            </div>
-
-            <div className="text-center">
-              <img
-                src={CDN_URL + username + "/" + ImageID}
-                alt=""
-                className="rounded-lg"
-              />
-            </div>
+            </div> 
           </div>
-          <div className="mx-12 my-5 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+          <div className="mx-12 my-10 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800" >
               <textarea
-                id="comment"
-                rows="3"
-                className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
+                id="comment" rows="3" className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
                 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Write a comment ..."
-                value={comment_content || ""}
-                onChange={(e) => setComment_content(e.target.value)}
-                required
-              ></textarea>
+                placeholder="Write a comment ..." value={comment_content || ""} onChange={(e) => setComment_content(e.target.value)} required></textarea>
             </div>
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button
@@ -348,8 +357,8 @@ export default function ImagePage() {
                   <div className="grid grid-cols-2 items-center px-3 py-2 border-t dark:border-gray-600">
                     <div className="flex justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
-                      {comment.username}
-                      
+                      <p className="font-bold">{comment.username}</p>
+                      <p className="font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                     </div>
                     <div className="flex justify-end items-center gap-5">
                       {
@@ -375,25 +384,31 @@ export default function ImagePage() {
         </>
       ) : (
         <>       
-          <div className="p-10 mx-2 justify-between grid grid-cols-2 gap-20">
-            <img
-              className="rounded-lg w-full h-auto"
-              src={CDN_URL + username + "/" + ImageID}
-              alt="" />
-            <div className="flex flex-col gap-10">
+          <div className="p-10 mx-2 grid lg:grid-cols-2 md:grid-cols-2 gap-20">
+            <img className="rounded-lg w-auto h-auto" src={CDN_URL + username + "/" + ImageID} alt="" />
+            <div className="flex flex-col justify-start gap-10">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {title}
               </h5>
               <p className="mb-3 font-medium text-gray-700 dark:text-gray-400">
                 {desc}
               </p>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              <p className="mb-3 font-medium text-gray-700 dark:text-gray-400">
                 Categories : {theme} 
               </p>
+              <div className="grid grid-cols-2 space-x-1 items-center gap-5 text-gray-100 dark:text-gray-400">
+                <p className="font-medium">{"Posted at : " + new Date(postDate).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
+                <div className="flex justify-end items-center gap-10">
+                  <p className="font-bold text-gray-700 dark:text-gray-400">{whoPostedUsername}</p>
+                  <UserAvatar email={whoPostedMAIL} size={45} />
+                </div>
+              </div>
+              
             </div>
+            
           </div>
           
-          <div className="mx-12 my-5 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+          <div className="mx-12 my-10 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800" >
               <textarea
                 id="comment"
@@ -425,19 +440,16 @@ export default function ImagePage() {
             return (
                 <div className="bg-gray-50 mx-12 my-5 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                    <p
-                      id="comment"
-                      rows="4"
-                      className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                    >
+                    <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
                       {comment.content}
                     </p>
                   </div>
                   <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-                    <div className="flex items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
+                    <div className="flex items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-700 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
-                      {comment.username}
-                    </div>  
+                      <p className="font-bold">{comment.username}</p>
+                      <p className="font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
+                    </div>
                     {
                         comment.user_id == user.id ?
                         (
