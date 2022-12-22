@@ -12,7 +12,7 @@ export default function ImagePage() {
   const user = useUser();
   const session = useSession();
   const supabase = useSupabaseClient();
-  const CDN_URL = "https://app.supabase.com/project/skosgopoasczfbihkylx/storage/buckets/images";
+  const CDN_URL = "https://app.supabase.com/project/skosgopoasczfbihkylx/storage/buckets/images/";
 
   const [title, setTitle] = useState("");
   const [theme, setTheme] = useState("");

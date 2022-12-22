@@ -8,7 +8,7 @@ export default function My_Collection() {
   const router = useRouter();
   const session = useSession();
   const supabase = useSupabaseClient();
-  const CDN_URL = "https://app.supabase.com/project/skosgopoasczfbihkylx/storage/buckets/images";
+  const CDN_URL = "https://app.supabase.com/project/skosgopoasczfbihkylx/storage/buckets/images/";
 
   const [infos, setInfos] = useState([])
 
