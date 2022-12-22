@@ -224,7 +224,7 @@ export default function ImagePage() {
     }
   }
 
-  async function UpdateComment(comment_id,commentaire) ///// A FAIRE
+  async function UpdateComment(comment_id,commentaire) 
   {
 
       setHidden(comment_id);
