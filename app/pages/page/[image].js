@@ -21,11 +21,10 @@ export default function ImagePage() {
 
   const [surname , setSurname] = useState("");
   const [comments, setComments] = useState([]);
-  const [comment_content, setComment_content] = useState("");
-  const [ hidden, setHidden] = useState(false);
-  const [whoPostedMAIL, setWhoPostedMAIL] = useState("");
-  const [whoPostedUsername, setWhoPostedUsername] = useState("");
-  const [postDate, setPostDate] = useState("");
+  const [comment_content, setComment_content] = useState(null)
+  const [comment_content2, setComment_content2] = useState(null)
+
+  const [ hidden, setHidden] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -222,26 +221,30 @@ export default function ImagePage() {
     }
   }
 
-  async function UpdateComment(comment_id) ///// A FAIRE
+  async function UpdateComment(comment_id,commentaire) ///// A FAIRE
   {
-    try {
-      setLoading(true);
-      setHidden(comment_id);
 
-      if (error) {
-        alert("Error Deleting Image");
-      }
-    } catch (error) {
-      console.log("DELETE comments");
-      console.log(error);
-    } finally {
+      setHidden(comment_id);
+    if(comment_content2 !== null && comment_content2 !== "") 
+    {
+      setLoading(true);
+      let { data, error } = await supabase
+      .from("comments")
+      .update({content:comment_content2})
+      .eq('id',comment_id)
+
       setLoading(false);
-      getComments();
+
+      setHidden(null)
+      setComment_content2(null)
     }
+      getComments()
+
   }
 
   return (
     <>
+    
       {username == session?.user?.id ? (
         <>
           <div className="p-10 mx-2 grid lg:grid-cols-2 gap-20">
@@ -315,7 +318,10 @@ export default function ImagePage() {
               <textarea
                 id="comment" rows="3" className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
                 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Write a comment ..." value={comment_content || ""} onChange={(e) => setComment_content(e.target.value)} required></textarea>
+                placeholder="Write a comment ..."
+                value={comment_content || ""} onChange={(e) => setComment_content(e.target.value)}
+                required
+              ></textarea>
             </div>
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button
@@ -344,7 +350,7 @@ export default function ImagePage() {
                         rows="3"
                         className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
                         transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        placeholder="Write a comment ..." value={comment_content || ""}  onChange={(e) => setComment_content(e.target.value)} required></textarea>
+                        placeholder="Write a comment ..." value={comment_content2 || ""}  onChange={(e) => setComment_content2(e.target.value)}  required></textarea>
                     ):
                     (
                       <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
@@ -364,7 +370,7 @@ export default function ImagePage() {
                       {
                       comment.user_id == user.id ?
                         (
-                          <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700"> 
+                          <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700" value="hdh"> 
                             Modify
                           </button>
                         ) :
@@ -376,7 +382,6 @@ export default function ImagePage() {
                             Delete Comments
                       </button>
                     </div>
-                    
                   </div>
                 </div>
             );
@@ -453,7 +458,7 @@ export default function ImagePage() {
                     {
                         comment.user_id == user.id ?
                         (
-                          <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
+                          <button onClick={()=> DeleteComment(comment.id,comment.content)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
                             Delete Comments
                           </button>
                         ) :
@@ -463,6 +468,7 @@ export default function ImagePage() {
                       }
                     
                   </div>
+                  
                 </div>
             );
           })}
