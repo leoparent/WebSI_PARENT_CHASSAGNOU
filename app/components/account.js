@@ -2,6 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import UserAvatar from "./Gravatar";
 import UserContext from "../contexts/UserContext"
+import MailIcon from '@mui/icons-material/Mail';
+import LanguageIcon from '@mui/icons-material/Language';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
 import Link from "next/link";
 
 export default function Account({ session }) {
@@ -83,8 +87,6 @@ export default function Account({ session }) {
   async function updateProfile() {
     try {
       setLoading(true);
-      //updateComments();
-
       const updates = {
         id: user.id,
         username : username,
@@ -94,7 +96,7 @@ export default function Account({ session }) {
       };
 
       let { data, error } = await supabase.from("profiles").update(updates);
-      //updateComments();
+
       if(error)
       {
         throw error
@@ -117,16 +119,16 @@ export default function Account({ session }) {
       <div className="py-5 items-center ">
         <div className="">
           <div className="my-5 grid grid-cols-2">
-            <label htmlFor="email" className="dark:text-gray-400"> Email : </label>
+            <label htmlFor="email" className="dark:text-gray-400"><MailIcon/> Email : </label>
             <label className="dark:text-gray-400">{session.user.email}</label>
           </div>
           <div className="my-5 grid grid-cols-2">
-            <label htmlFor="username" className="dark:text-gray-400"> Username : </label>
+            <label htmlFor="username" className="dark:text-gray-400"><AccountBoxIcon/> Username : </label>
             <input className="rounded-lg text-center bg-gray-200 " id="username" type="text" value={username || ""} onChange={(e) => setUsername(e.target.value)}/>
           </div>
           
           <div className="my-5 grid grid-cols-2">
-            <label htmlFor="website" className="dark:text-gray-400"> Website : </label>
+            <label htmlFor="website" className="dark:text-gray-400"><LanguageIcon/> Website : </label>
             <input className="rounded-lg text-center bg-gray-200" id="website" type="text" value={website || ""}  onChange={(e) => setWebsite(e.target.value)}/>
           </div>
           
@@ -151,7 +153,7 @@ export default function Account({ session }) {
           Sign Out
         </button>
       </div>
-      <h1 className="font-medium text-gray-600 dark:text-gray-400 pb-5 mt-5">Select the color theme</h1>
+      <h1 className="font-medium text-gray-600 dark:text-gray-400 pb-5 mt-5">Select the color theme <ColorLensIcon/></h1>
       <div className="">
         <div className="flex gap-2 ">
           <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="bg-theme-bleu" className="flex items-center px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">blue</button>

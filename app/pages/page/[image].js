@@ -4,6 +4,7 @@ import Link from "next/link";
 import {  useUser,  useSupabaseClient,  useSession,} from "@supabase/auth-helpers-react";
 import UserAvatar from "../../components/Gravatar.js";
 import { v4 as uuidv4, v4 } from "uuid";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export default function ImagePage() {
   const router = useRouter();
@@ -342,7 +343,7 @@ export default function ImagePage() {
           {
           comments.map((comment) => {
             return (
-                <div className="bg-gray-50 mx-12 my-5 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
+                <div className="bg-gray-50 mx-12 my-8 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                     { hidden === comment.id ?
                     (
@@ -363,14 +364,14 @@ export default function ImagePage() {
                     }
                   </div>
                   <div className="grid grid-cols-2 items-center px-3 py-2 border-t dark:border-gray-600">
-                    <div className="flex justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
+                    <div className="lg:flex lg:justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
                       <p className="font-bold">{comment.username}</p>
                       <p className="font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                     </div>
-                    <div className="flex justify-end items-center gap-5">
+                    <div className="justify-end grid grid-rows-2 lg:flex lg:justify-end items-center gap-5">
                       {
-                      comment.user_id == user.id ?
+                        comment.user_id == user.id ?
                         (
                           <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700" value="hdh"> 
                             Modify
@@ -381,7 +382,7 @@ export default function ImagePage() {
                         )
                       }
                       <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
-                            Delete Comments
+                            <DeleteForeverIcon/>
                       </button>
                     </div>
                   </div>
@@ -445,7 +446,7 @@ export default function ImagePage() {
           {
           comments.map((comment) => {
             return (
-                <div className="bg-gray-50 mx-12 my-5 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
+                <div className="bg-gray-50 mx-12 my-8 border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600" key={comment.id}>
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                     { hidden === comment.id ?
                     (
@@ -473,15 +474,14 @@ export default function ImagePage() {
                     {
                         comment.user_id == user.id ?
                         (
-                        <div className="flex gap-10">
-                          <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700" value="hdh"> 
-                            Modify
-                          </button>
-                          <button onClick={()=> DeleteComment(comment.id,comment.content)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
-                            Delete Comments
-                          </button>
-                        </div>
-                          
+                          <div className="justify-end grid grid-rows-2 lg:flex lg:justify-end items-center gap-5">
+                            <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700" value="hdh"> 
+                              Modify
+                            </button>
+                            <button onClick={()=> DeleteComment(comment.id,comment.content)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
+                              <DeleteForeverIcon/>
+                            </button>
+                          </div>
                         ) :
                         (
                           <></>
