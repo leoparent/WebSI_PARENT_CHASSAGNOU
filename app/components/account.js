@@ -91,7 +91,10 @@ export default function Account({ session }) {
         updated_at: new Date().toISOString(),
       };
 
-      let { data, error } = await supabase.from("profiles").update(updates);
+      let { data, error } = await supabase
+      .from("profiles")
+      .update(updates)
+      .eq('id',user.id)
 
       if(error)
       {
