@@ -24,9 +24,6 @@ export default function Header() {
       <Link href="../" className="text-base font-medium text-gray-400 dark:hover:text-white hover:text-black">
         Home
       </Link>
-      <Link href="/news" className="text-base font-medium text-gray-400 dark:hover:text-white hover:text-black">
-        News
-      </Link>
       <Link href="/collection" className="text-base font-medium text-gray-400 dark:hover:text-white hover:text-black">
         Collection
       </Link>

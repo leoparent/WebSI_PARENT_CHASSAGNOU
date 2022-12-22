@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import { useUser, useSupabaseClient, useSession } from "@supabase/auth-helpers-react";
+import { randomUUID } from "crypto";
 
 export default function Home() {
   const user = useUser();
@@ -17,8 +18,9 @@ export default function Home() {
   async function getCollection() {
     try {
       let {data , error } = await supabase
-      .from("articles")
+      .from("random_articles")
       .select(`id,name,theme,description,user_id`)
+      .limit(6)
 
       if(data)
       {

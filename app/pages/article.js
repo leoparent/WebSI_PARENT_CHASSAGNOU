@@ -17,13 +17,28 @@ export default function Article() {
   const [desc, setDesc] = useState(null);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
+  const [error , setError] = useState("")
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: "image/*",
+    accept: {
+      
+    },
     onDrop: (acceptedFiles) => {
       const file = acceptedFiles[0];
       setPreviewUrl(URL.createObjectURL(file));
-      setImage(file);
+      console.log(file)
+      if(file.type == "image/jpeg" || file.type == "image/png")
+      {
+        setImage(file);
+        setError("")
+      }
+      else
+      {
+        setError("only .jpeg and .png files accepted")
+        setPreviewUrl(URL.createObjectURL(null));
+        setImage(null);
+      }
+      
     },
   });
 
@@ -36,11 +51,14 @@ export default function Article() {
   const [previewUrl, setPreviewUrl] = useState(null);
 
   async function Share({ title, theme, desc }) {
-    try {
+      
+    const uuid = v4()
+    const file = image
+    if(file !== null)
+    {
+      try {
       setLoading(true);
 
-      const uuid = v4()
-      const file = image
       const { data, err } = await supabase.storage
         .from("images")
         .upload(user.id + "/" + uuid, file);
@@ -71,6 +89,8 @@ export default function Article() {
       setDesc("")
       setPreviewUrl(null)
     }
+    }
+      
   }
 
   return (
@@ -127,13 +147,16 @@ export default function Article() {
         </div>
 
         <div className="text-center" {...getRootProps()}>
-          <input {...getInputProps()} />
-          {isDragActive ? (
-            <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Drag and drop ;{")"}</p>
-          ) : (
-            <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"><UploadFileIcon/> Upload image</p>
-          )}
-          <img src={previewUrl} alt="" className="rounded-lg" />
+          <div className="">
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"><UploadFileIcon/> Drop ;{")"}</p>
+            ) : (
+              <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"><UploadFileIcon/> Drag your image ;{")"}</p>
+            )}
+            <img src={previewUrl} alt="" className="rounded-lg" />
+            <p className="text-red-600 font-medium dark:text-red-500">{error}</p>
+          </div>
         </div>
 
         

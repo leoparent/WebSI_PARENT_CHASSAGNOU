@@ -2,14 +2,12 @@ import React, { useState } from "react"
 import Layout from '../components/Layout'
 import 'tailwindcss/tailwind.css'
 import UserContext from '../contexts/UserContext'
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { createClient } from "@supabase/supabase-js"
 
 function MyApp({ Component, pageProps }) {
 
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL , process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
-  //const [supabase] = useState(() => createBrowserSupabaseClient())
   const [user, setUser] = useState("")
   const [isLogged, setLog] = useState(false)
   const [darkMode, setDarkMode] = useState(false)
