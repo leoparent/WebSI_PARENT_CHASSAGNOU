@@ -1,21 +1,21 @@
+import timeline from "../public/timeline.png"
+import timeline_blanc from "../public/timeline_blanc.png"
+import Image from "next/image"
+import UserContext from "../contexts/UserContext"
+import { useContext } from "react"
 
-export default function About() {
+export default function About(){
+
+  const { darkMode, setDarkMode } = useContext(UserContext)
+
   return (
+
     <>
-      <div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <div class="bg-cover bg-center mx-14 flex flex-col min-h-screen">
-        
-      <h1 className='font-sans font-normal'>
-          Nous sommes SWILD, la galerie NFT n°1 dans le monde.
-          <br></br> Ici vous pourrez trouver le travail de plus de 10 000 artistes dans le monde entier.
-          <br></br> Fondée en 2022 par Léo Parent et Paul-Adrien Chassagniou, SWILD s'est rapidement vue leader sur le marché.
-          <br></br> Nous utilisons la technologie de la blockchain pour garentir l'authenticité des produits.
-      </h1>
+      <div className="mx-10 w-auto">
+        <Image src={darkMode ? timeline : timeline_blanc} />
       </div>
-    </div>
+      
     </>
+        
   )
 }
