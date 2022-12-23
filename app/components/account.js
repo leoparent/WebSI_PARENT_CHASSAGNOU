@@ -110,16 +110,16 @@ export default function Account({ session }) {
   }
 
   return (
-    <div className ="bg-gray-100 dark:bg-gray-700 lg:rounded-3xl md:rounded-3xl lg:border md:border border-gray-300 py-10 flex justify-center items-center flex-col mx-auto lg:w-1/2 md:w-3/4 sm:w-full">
+    <div className ="bg-gray-100 dark:bg-gray-700 lg:rounded-3xl md:rounded-3xl lg:border md:border overflow-hidden border-gray-300 py-10 flex justify-center items-center flex-col mx-auto lg:w-1/2 md:w-3/4 sm:w-full">
       <h1 className="font-medium text-gray-600 dark:text-gray-400 pb-10"> Account Settings</h1>
 
       <Link href="https://fr.gravatar.com"><UserAvatar email={session.user.email} size={200} /></Link>
 
       <div className="py-5 items-center ">
         <div className="">
-          <div className="my-5 grid grid-cols-2">
+          <div className="my-5 md:grid md:grid-cols-2">
             <label htmlFor="email" className="dark:text-gray-400"><MailIcon/> Email : </label>
-            <label className="dark:text-gray-400">{session.user.email}</label>
+            <label className="dark:text-gray-400 w-full">{session.user.email}</label>
           </div>
           <div className="my-5 grid grid-cols-2">
             <label htmlFor="username" className="dark:text-gray-400"><AccountBoxIcon/> Username : </label>
@@ -153,15 +153,12 @@ export default function Account({ session }) {
         </button>
       </div>
       <h1 className="font-medium text-gray-600 dark:text-gray-400 pb-5 mt-5">Select the color theme <ColorLensIcon/></h1>
-      <div className="">
-        <div className="flex gap-2 ">
+      <div className="md:flex md:gap-2 grid grid-cols-3 gap-1">
           <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="bg-theme-bleu" className="flex items-center px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">blue</button>
           <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="bg-theme-violet" className="flex items-center px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">purple</button>
           <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="bg-theme-blanc" className="flex items-center px-6 py-2.5 dark:bg-white bg-white-600 text-gray-500 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-white-700 hover:shadow-lg focus:bg-white-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-white-800 active:shadow-lg transition duration-150 ease-in-out">white</button>
           <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="bg-theme-vert" className="flex items-center px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">green</button>
           <button type="button" onClick= {(e) => setAccentuation(e.target.value)} value="bg-theme-jaune" className="flex items-center px-6 py-2.5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out">orange</button>
-        </div>
-        
       </div>
     </div>
   );

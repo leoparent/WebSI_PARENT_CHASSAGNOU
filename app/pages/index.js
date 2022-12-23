@@ -148,7 +148,7 @@ export default function Home() {
                           })
                         } 
                     </div>
-                    <div class="flex flex-wrap w-1/2">
+                    <div className="flex flex-wrap w-1/2">
                     {
                     infos2.map((image)=>{
                     compteur = 3
@@ -182,7 +182,7 @@ export default function Home() {
                           })
                         } 
                     </div>
-                    <div class="flex flex-wrap w-1/2">
+                    <div className="flex flex-wrap w-1/2">
                     {
                     infos4.map((image)=>{
                     compteur2 = 3

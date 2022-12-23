@@ -26,25 +26,23 @@ export default function LoggedIn({session}){
 
   return (
     <>
-      <div className='gap-2 [&_svg]:h-6 [&_svg]:w-6 items-center flex static'>
+      <div className="flex items-center justify-center md:justify-end"> 
         { session ?
-          <>
-            <Button/>
-            <div className="bg-white rounded-full">
-              <button className="flex bg-center object-scale-down h-12 w-12" onClick={async () => { setDarkMode(!darkMode) }}> <Image src={darkMode ? soleil : lune} /></button>
-            </div>
-            <button className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6 items-center"onClick={onClick}>
+          <div className="flex gap-32 md:gap-0 sm:gap-0 lg:gap-0" >
+            
+            <button className=" h-12 w-12" onClick={async () => { setDarkMode(!darkMode) }}> <Image src={darkMode ? soleil : lune} /></button>
+            <Button/> 
+            <button className="flex"onClick={onClick}>
               <span
-                className="pl-10 hover:to-black hover:opacity-70">
+                className="pl-5 hover:to-black hover:opacity-70">
               <UserAvatar email={session.user.email} size={50} />
               </span>
             </button>
-          </>
+            
+          </div>
           :
           <>
-            <div className="bg-white rounded-full">
-              <button className="flex bg-center object-scale-down h-12 w-12" onClick={async () => { setDarkMode(!darkMode) }}> <Image src={darkMode ? soleil : lune} /></button>
-            </div>
+            <button className="flex object-scale-down h-12 w-12" onClick={async () => { setDarkMode(!darkMode) }}> <Image src={darkMode ? soleil : lune} /></button>
             <button className="flex gap-2 [&_svg]:h-6 [&_svg]:w-6 items-center"onClick={onClick}>
               <span className="ml-8 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
                 Connect 

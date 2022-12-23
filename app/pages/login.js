@@ -10,7 +10,7 @@ const Authentification = () => {
   const {darkMode, setDarkMode} = useContext(UserContext)
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto ">
       {!session ? (
         <div className='mx-auto w-1/2'> 
           <Auth providers={['github']} supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme={darkMode ? "dark" : ""} />

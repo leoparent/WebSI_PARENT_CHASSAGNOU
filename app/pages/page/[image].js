@@ -297,7 +297,7 @@ export default function ImagePage() {
                   placeholder="Description"
                 ></textarea>
               </div>
-              <div className="my-20 grid grid-cols-2 space-x-1 items-center text-gray-700 dark:text-gray-400">
+              <div className="my-20 grid grid-cols-2 text-start gap-10 items-center text-gray-700 dark:text-gray-400">
                 <p className="font-medium">{"Posted at : " + new Date(postDate).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                 <div className="flex justify-end items-center gap-5 lg:gap-10 md:gap-10">
                   <p className="font-bold text-gray-700 dark:text-gray-400">{whoPostedUsername}</p>
@@ -363,13 +363,13 @@ export default function ImagePage() {
                       
                     }
                   </div>
-                  <div className="grid grid-cols-2 items-center px-3 py-2 border-t dark:border-gray-600">
-                    <div className="lg:flex lg:justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
+                  <div className="flex md:grid md:grid-cols-3 items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                    <div className="flex justify-start md:flex md:justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
                       <p className="font-bold">{comment.username}</p>
-                      <p className="font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
+                      <p className="hidden sm:block font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                     </div>
-                    <div className="justify-end grid grid-rows-2 lg:flex lg:justify-end items-center gap-5">
+                    <div className="justify-end grid grid-rows-2 md:flex md:justify-end items-center gap-5">
                       {
                         comment.user_id == user.id ?
                         (
@@ -469,7 +469,7 @@ export default function ImagePage() {
                     <div className="flex items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-700 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
                       <p className="font-bold">{comment.username}</p>
-                      <p className="font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
+                      <p className="hidden sm:block font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                     </div>
                     {
                         comment.user_id == user.id ?

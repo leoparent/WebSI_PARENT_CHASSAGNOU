@@ -39,11 +39,11 @@ export default function Collection() {
   
   return (
     <>
-      <div className="ml-20 gap-x-10 gap-y-20 grid grid-cols-3">
+      <div className="md:mx-auto lg:mx-auto flex flex-col gap-8 md:gap-x-5 md:gap-y-10 md:grid md:grid-cols-2 lg:gap-x-10 lg:gap-y-20 lg:grid lg:grid-cols-3 ">
         {
           infos.map((image) => {
             return (
-              <div className="max-w-lg bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700" key={image.id}>
+              <div className="lg:max-w-lg  max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700" key={image.id}>
                 <Link href={'/page/' + image.id} >
                   <img className="rounded-t-lg" src={CDN_URL + image.user_id + "/" + image.id} alt="" />
 
