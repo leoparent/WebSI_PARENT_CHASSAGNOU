@@ -5,8 +5,8 @@
 
 ## Production 
 
-- Vercel URL: https://...
-- Supabase project URL: https://app.supabase.com/project/...
+- Vercel URL: https://iartist.vercel.app/
+- Supabase project URL: https://app.supabase.com/project/skosgopoasczfbihkylx
 
 ## Usage
 
