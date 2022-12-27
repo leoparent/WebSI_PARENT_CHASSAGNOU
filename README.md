@@ -1,14 +1,14 @@
 
 # Blogging application - ECE Webtech project
 
-*This project is a website of IA art called "IArtist". The website is a place to see and share IA designed artworks by a new generation of artists.*
+*This project is a website of IA art called "IArtist". The website is an art gallery where you can see and share IA generated artworks by a new generation of artists.*
 
 ## Production 
 
-*You can directly have access to our project by clicking on the link below :*
+*You can directly access to our deployed project by clicking on the link below :*
 
-- Vercel URL: https://iartist.vercel.app/
-- Supabase project URL: https://app.supabase.com/project/skosgopoasczfbihkylx
+- Vercel URL : https://iartist.vercel.app/
+- Supabase project URL : https://app.supabase.com/project/skosgopoasczfbihkylx
 
 ## Usage
 
@@ -39,8 +39,8 @@
 * Naming convention   
 
   *Graduation : 2/2*  
-  - Components start with capital letter
-  - Pages start with small letter
+  - Components start with capital letter  
+  - Pages start with small letter  
   - Code is formated by Prettier Extension  
 
 * Project structure     
@@ -99,7 +99,9 @@
 * Resource access control
 
   *Graduation : 6/6*     
-  *place your graduation and comments*
+  If a user is not logged, he can see the collection but when he'll click on a post it will redirect him to the login page. An unlogged user can't see image informations, comments, can't write comments. He can't see his profile settings, his personnal collection and for sure create a post and share it.
+  If you try to access to theses pages by the URL directly, you'll be redirect to the login page.  
+  If a user is logged, he can fully access to the website and will be able to create, update , delete posts and comments.
 
 * Article modification  
 
@@ -149,9 +151,10 @@
 ## Bonus
 
 * Responsive   
-  *All of our pages are responsive and can be displayed on all formats of screens. On mobile/tablet screens, the menu is accessible from a hamburger button at the right-top corner of the screen.*
+  *All of our pages are responsive and can be displayed on all formats of screens. On mobile/tablet screens, the menu is accessible from a hamburger button at the right-top corner of the screen. We put a lot of effort to make it fully usable on all devices*
 
 * Emoji Integration  
   *We didn't use WYSIWYG Integration because we found it not necessary but we add in comments textboxs emoji button allows you to search and put emojis in your comments.*
 
-
+* Personnal Collection  
+  *In the "New" dropdown button, you can click on "My collection". It'll show you your personnal collection. It's easier than finding our own publications in the general collection.*
