@@ -5,6 +5,7 @@ import {  useUser,  useSupabaseClient,  useSession,} from "@supabase/auth-helper
 import UserAvatar from "../../components/Gravatar.js";
 import { v4 as uuidv4, v4 } from "uuid";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import InputEmoji from "react-input-emoji";
 
 export default function ImagePage() {
   const router = useRouter();
@@ -318,13 +319,7 @@ export default function ImagePage() {
           </div>
           <div className="mx-12 my-10 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800" >
-              <textarea
-                id="comment" rows="3" className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
-                transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Write a comment ..."
-                value={comment_content || ""} onChange={(e) => setComment_content(e.target.value)}
-                required
-              ></textarea>
+              <InputEmoji value={comment_content || ""} onChange={(e) => setComment_content(e)}/>
             </div>
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button
@@ -347,13 +342,8 @@ export default function ImagePage() {
                   <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                     { hidden === comment.id ?
                     (
+                      <InputEmoji value={comment_content2 || ""} onChange={(e) => setComment_content2(e)} required/>
                       
-                      <textarea
-                        id="comment"
-                        rows="3"
-                        className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
-                        transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        placeholder="Write a comment ..." value={comment_content2 || ""}  onChange={(e) => setComment_content2(e.target.value)}  required></textarea>
                     ):
                     (
                       <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
@@ -363,28 +353,35 @@ export default function ImagePage() {
                       
                     }
                   </div>
-                  <div className="flex md:grid md:grid-cols-3 items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                  <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
                     <div className="flex justify-start md:flex md:justify-start items-center gap-5 pl-0 space-x-1 sm:pl-2 text-gray-900 dark:text-white">
                       <UserAvatar email={comment.email} size={45} />
                       <p className="font-bold">{comment.username}</p>
                       <p className="hidden sm:block font-normal">{"posted at : " + new Date(comment.created_at).toLocaleString('fr-FR', { hour:'2-digit', minute :'2-digit',year: '2-digit',month: '2-digit', day: '2-digit'}) }</p>
                     </div>
-                    <div className="justify-end grid grid-rows-2 md:flex md:justify-end items-center gap-5">
+                    
                       {
                         comment.user_id == user.id ?
                         (
-                          <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700" value="hdh"> 
-                            Modify
-                          </button>
+                          <div className="justify-end grid grid-rows-2 lg:flex lg:justify-end items-center gap-5">
+                            <button onClick={()=> UpdateComment(comment.id)} className="rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700" value="hdh"> 
+                              Modify
+                            </button>
+                            <button onClick={()=> DeleteComment(comment.id,comment.content)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
+                              <DeleteForeverIcon/>
+                            </button>
+                          </div>
                         ) :
                         (
-                          <></>
+                          <>
+                            <div className="justify-end grid grid-rows-1 lg:flex lg:justify-end items-center gap-5">
+                            <button onClick={()=> DeleteComment(comment.id,comment.content)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
+                              <DeleteForeverIcon/>
+                            </button>
+                          </div>
+                          </>
                         )
                       }
-                      <button onClick={()=> DeleteComment(comment.id)} className="rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700"> 
-                            <DeleteForeverIcon/>
-                      </button>
-                    </div>
                   </div>
                 </div>
             );
@@ -418,16 +415,7 @@ export default function ImagePage() {
           
           <div className="mx-12 my-10 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800" >
-              <textarea
-                id="comment"
-                rows="3"
-                className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
-                transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Write a comment ..."
-                value={comment_content || ""}
-                onChange={(e) => setComment_content(e.target.value)}
-                required
-              ></textarea>
+              <InputEmoji value={comment_content || ""} onChange={(e) => setComment_content(e)}/>
             </div>
             <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
               <button
@@ -451,12 +439,7 @@ export default function ImagePage() {
                     { hidden === comment.id ?
                     (
                       
-                      <textarea
-                        id="comment"
-                        rows="3"
-                        className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
-                        transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        placeholder="Write a comment ..." value={comment_content2 || ""}  onChange={(e) => setComment_content2(e.target.value)}  required></textarea>
+                      <InputEmoji value={comment_content2 || ""} onChange={(e) => setComment_content2(e)} required/>
                     ):
                     (
                       <p id="comment" rows="4" className="w-full px-0 text-lg font-medium text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">

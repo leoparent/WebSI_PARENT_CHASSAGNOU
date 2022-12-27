@@ -38,23 +38,31 @@
 
 * Naming convention   
 
-  *Graduation : 1.5/2*  
-  *place your graduation and comments*
+  *Graduation : 2/2*  
+  - Components start with capital letter
+  - Pages start with small letter
+  - Code is formated by Prettier Extension  
 
-* Project structure   
+* Project structure     
 
   *Graduation : 2/2*  
-  *place your graduation and comments*
+  - components : contains all components
+  - pages : contains all pages
+    - page : folder contain dynamic routing page for article
+
+  - public : contains public images
+  - contexts : contains User context variables
+  - styles : contains style
 
 * Git   
 
   *Graduation : 2/2*  
-  *place your graduation and comments*
+  We used conventionnal commits and we created a branch "projet" for the project.
 
 * Code quality  
 
   *Graduation : 4/4*  
-  *place your graduation and comments*
+  The code is pretty easy to understand and is formated by Prettier Extension.
 
 * Design, UX, and content
 
@@ -120,8 +128,8 @@
 
 * WYSIWYG integration  
 
-  *Graduation : 2/2*  
-  *place your graduation and comments*
+  *Graduation : 0/2*  
+  We didn't use WYSIWYG text editor because we found no need in the integration of it unlike a text article blog website could have. All the textboxs we have are for small texts such as the title or short description of an image.
 
 * Gravatar integration  
 
@@ -142,5 +150,8 @@
 
 * Responsive   
   *All of our pages are responsive and can be displayed on all formats of screens. On mobile/tablet screens, the menu is accessible from a hamburger button at the right-top corner of the screen.*
+
+* Emoji Integration  
+  *We didn't use WYSIWYG Integration because we found it not necessary but we add in comments textboxs emoji button allows you to search and put emojis in your comments.*
 
 
