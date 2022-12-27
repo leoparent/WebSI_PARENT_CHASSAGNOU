@@ -141,6 +141,6 @@
 ## Bonus
 
 * Responsive   
-  *All of our pages are responsive and can be displayed on all formats of screens. On mobile/tablet screens, the menu is accessible from a hamburger button on the right-top side of the screen.*
+  *All of our pages are responsive and can be displayed on all formats of screens. On mobile/tablet screens, the menu is accessible from a hamburger button at the right-top corner of the screen.*
 
 

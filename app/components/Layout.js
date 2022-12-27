@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
 import Footer from "./Footer";
-import Header from "./header.jsx";
+import Header from "./Header.jsx";
 
 export default function Layout({ children }) {
   const { darkMode, setDarkMode } = useContext(UserContext);
