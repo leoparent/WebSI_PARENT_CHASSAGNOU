@@ -119,21 +119,21 @@ export default function Home() {
 
   return (
     <>
-      <div className="items-center text-center dark:bg-test-dark bg-test-light bg-auto bg-top bg-no-repeat overflow-hidden dark:bg-black">
-        <div className="pb-36">
-          <h1 className="mb-10 text-2xl font-medium text-gray-600 dark:text-gray-400 ">
+      <div className="items-center text-center dark:lg:bg-test-dark lg:bg-test-light bg-auto bg-top bg-no-repeat overflow-hidden dark:bg-black">
+        <div className="pb-15">
+          <h1 className="mb-10 text-xl lg:text-2xl font-medium text-gray-600 dark:text-gray-400">
             {" "}
             The new gallery for IA generated Art
           </h1>
           <Link href="./collection">
-            <button className="ml-8 text-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+            <button className="text-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
               Go to gallery
             </button>
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-24 mt-52">
-          <section className="flex text-gray-700 ml-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mt-10">
+          <section className="flex text-gray-700 lg:ml-10">
             <div className="container px-5 py-2 mx-auto lg:pt-24 lg:px-32">
               <div className="flex flex-wrap -m-1 md:-m-2">
                 <div className="flex flex-wrap w-1/2">
@@ -168,7 +168,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="flex text-gray-700 ml-20">
+          <section className="flex text-gray-700 lg:ml-10">
             <div className="container px-5 py-2 mx-auto lg:pt-24 lg:px-32">
               <div className="flex flex-wrap -m-1 md:-m-2">
                 <div className="flex flex-wrap w-1/2">
