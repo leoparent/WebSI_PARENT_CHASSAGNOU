@@ -36,7 +36,7 @@ export default function Collection() {
     }
   }
 
-  
+
   return (
     <>
       <div className="md:mx-auto lg:mx-auto flex flex-col gap-8 md:gap-x-5 md:gap-y-10 md:grid md:grid-cols-2 lg:gap-x-10 lg:gap-y-20 lg:grid lg:grid-cols-3 ">

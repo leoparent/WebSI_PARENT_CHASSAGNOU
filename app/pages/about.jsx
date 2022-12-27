@@ -4,7 +4,7 @@ import Image from "next/image"
 import UserContext from "../contexts/UserContext"
 import { useContext } from "react"
 
-export default function About(){
+export default function About() {
 
   const { darkMode, setDarkMode } = useContext(UserContext)
 
@@ -14,8 +14,8 @@ export default function About(){
       <div className="mx-10 w-auto">
         <Image src={darkMode ? timeline : timeline_blanc} />
       </div>
-      
+
     </>
-        
+
   )
 }

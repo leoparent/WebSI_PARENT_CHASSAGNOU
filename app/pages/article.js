@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import { useUser, useSupabaseClient, useSession } from "@supabase/auth-helpers-react";
+import {
+  useUser,
+  useSupabaseClient,
+  useSession,
+} from "@supabase/auth-helpers-react";
 import { v4 as uuidv4, v4 } from "uuid";
-import UploadFileIcon from '@mui/icons-material/UploadFile';
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useRouter } from "next/router";
 
 export default function Article() {
   const user = useUser();
   const supabase = useSupabaseClient();
-  const CDN_URL = "https://skosgopoasczfbihkylx.supabase.co/storage/v1/object/public/images/";
+  const CDN_URL =
+    "https://skosgopoasczfbihkylx.supabase.co/storage/v1/object/public/images/";
   const session = useSession();
   const router = useRouter();
 
@@ -17,80 +22,71 @@ export default function Article() {
   const [desc, setDesc] = useState(null);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
-  const [error , setError] = useState("")
+  const [error, setError] = useState("");
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: {
-      
-    },
+    accept: {},
     onDrop: (acceptedFiles) => {
       const file = acceptedFiles[0];
       setPreviewUrl(URL.createObjectURL(file));
-      console.log(file)
-      if(file.type == "image/jpeg" || file.type == "image/png")
-      {
+      console.log(file);
+      if (file.type == "image/jpeg" || file.type == "image/png") {
         setImage(file);
-        setError("")
-      }
-      else
-      {
-        setError("only .jpeg and .png files accepted")
+        setError("");
+      } else {
+        setError("only .jpeg and .png files accepted");
         setPreviewUrl(URL.createObjectURL(null));
         setImage(null);
       }
-      
     },
   });
 
   useEffect(() => {
     if (!user) {
       router.push("/login");
-    }  
-  }, [session]);  
+    }
+  }, [session]);
 
   const [previewUrl, setPreviewUrl] = useState(null);
 
   async function Share({ title, theme, desc }) {
-      
-    const uuid = v4()
-    const file = image
-    if(file !== null)
-    {
+    const uuid = v4();
+    const file = image;
+    if (file !== null) {
       try {
-      setLoading(true);
+        setLoading(true);
 
-      const { data, err } = await supabase.storage
-        .from("images")
-        .upload(user.id + "/" + uuid, file);
+        const { data, err } = await supabase.storage
+          .from("images")
+          .upload(user.id + "/" + uuid, file);
 
-      if (data == null) {
-        alert("Error Uploading Image");
+        if (data == null) {
+          alert("Error Uploading Image");
+        }
+
+        let { error } = await supabase.from("articles").insert({
+          id: uuid,
+          user_id: user.id,
+          name: title,
+          theme: theme,
+          description: desc,
+          created_at: new Date().toISOString(),
+        });
+
+        if (error) {
+          throw error;
+        }
+      } catch (error) {
+        alert("Error INSERT the data!");
+        console.log(error);
+      } finally {
+        setLoading(false);
+        setTitle("");
+        setTheme("");
+        setDesc("");
+        setPreviewUrl(null);
       }
-
-      let { error } = await supabase.from("articles").insert({
-        id: uuid,
-        user_id: user.id,
-        name: title,
-        theme: theme,
-        description: desc,
-        created_at: new Date().toISOString(),
-      });
-
-      if (error) {
-        throw error;
-      }
-    } catch (error) {
-      alert("Error INSERT the data!");
-      console.log(error);
-    } finally {
-      setLoading(false);
-      setTitle("") 
-      setTheme("") 
-      setDesc("")
-      setPreviewUrl(null)
     }
-    }
-      
   }
 
   return (
@@ -113,7 +109,10 @@ export default function Article() {
               type="text"
               className="block w-full px-3 py-1.5 text-base font-medium dark: text-gray-700 bg-white dark:bg-gray-400 bg-clip-padding  border border-solid border-gray-300 rounded
                     transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="Title" placeholder="Title" value={title || ""} onChange={(e) => setTitle(e.target.value)}
+              id="Title"
+              placeholder="Title"
+              value={title || ""}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="mb-6">
@@ -141,7 +140,8 @@ export default function Article() {
           <button
             className="mt-12 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             onClick={() => Share({ title, theme, desc })}
-            disabled={loading}>
+            disabled={loading}
+          >
             {loading ? "Loading ..." : "Share it ;)"}
           </button>
         </div>
@@ -150,16 +150,20 @@ export default function Article() {
           <div className="">
             <input {...getInputProps()} />
             {isDragActive ? (
-              <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"><UploadFileIcon/> Drop ;{")"}</p>
+              <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                <UploadFileIcon /> Drop ;{")"}
+              </p>
             ) : (
-              <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"><UploadFileIcon/> Drag your image ;{")"}</p>
+              <p className="mb-10 rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                <UploadFileIcon /> Drag your image ;{")"}
+              </p>
             )}
             <img src={previewUrl} alt="" className="rounded-lg" />
-            <p className="text-red-600 font-medium dark:text-red-500">{error}</p>
+            <p className="text-red-600 font-medium dark:text-red-500">
+              {error}
+            </p>
           </div>
         </div>
-
-        
       </div>
     </>
   );
