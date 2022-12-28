@@ -10,9 +10,11 @@
 - Vercel URL : https://iartist.vercel.app/
 - Supabase project URL : https://app.supabase.com/project/skosgopoasczfbihkylx
 
-We need your email to invite you to see our supabase project. So we put here some screenshots if you want to see our database :
+We need your email to invite you to see our supabase project. So we put here some screenshots if you want to see our databases :
 ![Screenshot](assets/screenshot1.png)
-![Screenshot](assets/screenshot2.png)
+
+![Screenshot](assets/screenshot2.png)  
+
 ![Screenshot](assets/screenshot3.png)
 
 ## Usage
