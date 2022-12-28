@@ -1,6 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+##Blog Application Project
 
-##Lab8 - SUPABASE
+*Please go in the "projet" branch to find our Blog Application Project*
 
-La dernière version est disponible dans la branche master
-
+- Paul-Adrien Chassagniou
+- Léo Parent
